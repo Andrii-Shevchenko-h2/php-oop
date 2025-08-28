@@ -17,6 +17,7 @@ trait Validator {
       }
     }
 
+    // A formatted error message if not in array
     if (!in_array($inputKeys, $validArrayKeys)) {
       $readableAllowedKeys = '';
 

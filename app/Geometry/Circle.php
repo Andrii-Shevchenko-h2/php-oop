@@ -8,6 +8,7 @@ use \BcMath\Number;
 
 readonly class Circle extends Shape {
   use \App\Geometry\Validator;
+  use \App\Geometry\Consts;
 
   public private(set) Number $diameter;
   public private(set) Number $radius;
@@ -16,52 +17,49 @@ readonly class Circle extends Shape {
   public private(set) Number $pi;
   public private(set) Number $two;
 
-  public function __construct(private array $arg) {
-    $this->setPi();
-    $this->two = new Number('2');
-
-    $this->validate(
-      args: $arg,
-      allowedInputs: [
+  public function __construct(private array $inputArray) {
+    $parameters = [
         ['diameter'],
         ['radius'],
         ['circumference'],
         ['area'],
-      ],
+    ];
+
+    $this->setPi();
+    $this->setTwo();
+    $this->validate(
+      inputArray: $inputArray,
+      validArrayKeys: $parameters,
     );
 
-    $key = array_key_first($arg);
+    $key = array_key_first($inputArray);
 
     switch ($key) {
       case 'diameter':
-        $this->diameter = new Number($arg[$key]);
+        $this->diameter = new Number($inputArray[$key]);
         $this->setRadius();
         $this->setCircumference();
         $this->setArea();
         break;
       case 'radius':
-        $this->radius = new Number($arg[$key]);
+        $this->radius = new Number($inputArray[$key]);
         $this->setDiameter();
         $this->setCircumference();
         $this->setArea();
         break;
       case 'circumference':
-        $this->circumference = new Number($arg[$key]);
+        $this->circumference = new Number($inputArray[$key]);
         $this->diameter = $this->circumference / $this->pi;
         $this->setRadius();
         $this->setArea();
         break;
       case 'area':
-        $this->area = new Number($arg[$key]);
+        $this->area = new Number($inputArray[$key]);
         $this->radius = ($this->area / $this->pi)->sqrt();
         $this->setDiameter();
         $this->setCircumference();
         break;
     }
-  }
-
-  protected function setPi() {
-    $this->pi = new Number('3.14159265358979323846264338327950288');
   }
 
   private function setDiameter() {
