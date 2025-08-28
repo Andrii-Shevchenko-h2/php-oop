@@ -7,17 +7,12 @@ namespace App\Geometry;
 trait Validator {
   protected function validate(
     array $args,
-    array $allowedKeys = [], // TO-DO: accept eventually pairs of keys
-    int $maxArgs
+    array $allowedInputs = [],
   ) {
-    if (count($args) > $maxArgs) {
-      throw new \InvalidArgumentException('The input array must contain exactly one key-value pair');
-    }
+    $argsKeys = array_keys($args);
 
-    $key = array_key_first($args);
-
-    if (!in_array($key, $allowedKeys)) {
-      $readableAllowedKeys = implode(', ', $allowedKeys);
+    if (!in_array($argsKeys, $allowedInputs)) {
+      $readableAllowedKeys = implode(', ', $allowedInputs);
       throw new \InvalidArgumentException("Bad Key: only these keys are allowed: $readableAllowedKeys");
     }
   }
