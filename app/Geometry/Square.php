@@ -9,6 +9,7 @@ use \BcMath\Number;
 readonly class Square extends Shape {
   use \App\Geometry\Validator;
   use \App\Geometry\Consts;
+  use \App\Geometry\FormulasSetValues;
 
   public private(set) Number $length;
   public private(set) Number $area;
@@ -32,7 +33,8 @@ readonly class Square extends Shape {
       validArrayKeys: $parameters,
     );
 
-    $formulas = [
+    // requires perfect order
+    $squareFormulas = [
       [
         'result_key' => 'length',
         'dependencies' => ['perimeter'],
@@ -65,44 +67,11 @@ readonly class Square extends Shape {
       ],
     ];
 
-    $key = array_key_first($inputArray); // validate allows max 1 key
+    $key = array_key_first($inputArray);
 
     // initialize first value
     $this->{$key} = new Number($inputArray[$key]);
 
-    $setRemainingValues = function() use ($inputArray, $parameters, $formulas) {
-      foreach ($formulas as $formula) {
-        if (isset($this->{$formula['result_key']})) {
-          continue;
-        }
-
-        foreach ($formula['dependencies'] as $dependency) {
-          if (!isset($this->{$dependency})) {
-            continue 2;
-          }
-        }
-
-        $this->{$formula['result_key']} = $formula['logic']();
-      }
-    };
-
-    $setRemainingValues();
-
-  }
-
-  private function setDiameter() {
-    $this->diameter = $this->radius * $this->two;
-  }
-
-  private function setRadius() {
-    $this->radius = $this->diameter / $this->two;
-  }
-
-  private function setArea() {
-    $this->area = $this->pi * $this->radius * $this->radius;
-  }
-
-  private function setCircumference() {
-    $this->circumference = $this->pi * $this->diameter;
+    $this->setRemainingValues(formulas: $squareFormulas);
   }
 }

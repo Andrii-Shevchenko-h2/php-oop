@@ -9,6 +9,7 @@ use \BcMath\Number;
 readonly class Circle extends Shape {
   use \App\Geometry\Validator;
   use \App\Geometry\Consts;
+  use \App\Geometry\FormulasSetValues;
 
   public private(set) Number $diameter;
   public private(set) Number $radius;
@@ -32,49 +33,44 @@ readonly class Circle extends Shape {
       validArrayKeys: $parameters,
     );
 
+    $circleFormulas = [
+      [
+        'result_key' => 'diameter',
+        'dependencies' => ['circumference'],
+        'logic' => fn() => $this->circumference / $this->pi,
+      ],
+      [
+        'result_key' => 'radius',
+        'dependencies' => ['area'],
+        'logic' => fn() => ($this->area / $this->pi)->sqrt(),
+      ],
+      [
+        'result_key' => 'radius',
+        'dependencies' => ['diameter'],
+        'logic' => fn() => $this->diameter / $this->two,
+      ],
+      [
+        'result_key' => 'diameter',
+        'dependencies' => ['radius'],
+        'logic' => fn() => $this->radius * $this->two,
+      ],
+      [
+        'result_key' => 'circumference',
+        'dependencies' => ['diameter'],
+        'logic' => fn() => $this->pi * $this->diameter,
+      ],
+      [
+        'result_key' => 'area',
+        'dependencies' => ['radius'],
+        'logic' => fn() => $this->radius * $this->radius * $this->pi,
+      ],
+    ];
+
     $key = array_key_first($inputArray);
 
-    switch ($key) {
-      case 'diameter':
-        $this->diameter = new Number($inputArray[$key]);
-        $this->setRadius();
-        $this->setCircumference();
-        $this->setArea();
-        break;
-      case 'radius':
-        $this->radius = new Number($inputArray[$key]);
-        $this->setDiameter();
-        $this->setCircumference();
-        $this->setArea();
-        break;
-      case 'circumference':
-        $this->circumference = new Number($inputArray[$key]);
-        $this->diameter = $this->circumference / $this->pi;
-        $this->setRadius();
-        $this->setArea();
-        break;
-      case 'area':
-        $this->area = new Number($inputArray[$key]);
-        $this->radius = ($this->area / $this->pi)->sqrt();
-        $this->setDiameter();
-        $this->setCircumference();
-        break;
-    }
-  }
+    $this->{$key} = new Number($inputArray[$key]);
 
-  private function setDiameter() {
-    $this->diameter = $this->radius * $this->two;
-  }
+    $this->setRemainingValues($circleFormulas);
 
-  private function setRadius() {
-    $this->radius = $this->diameter / $this->two;
-  }
-
-  private function setArea() {
-    $this->area = $this->pi * $this->radius * $this->radius;
-  }
-
-  private function setCircumference() {
-    $this->circumference = $this->pi * $this->diameter;
   }
 }
