@@ -18,6 +18,7 @@ $generateCircleTestText = function(Shape $circleObject, ?string $input = null) u
     Diameter: $circleObject->diameter
     Circumference: $circleObject->circumference
     Area: $circleObject->area
+    Pi: $circleObject->pi
   ---
   CIRCLE_TEST;
 };

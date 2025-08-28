@@ -14,21 +14,20 @@ readonly class Circle extends Shape {
   public private(set) Number $area;
   public private(set) Number $circumference;
   public private(set) Number $pi;
+  public private(set) Number $two;
 
   public function __construct(private array $arg) {
     $this->setPi();
-
-    $allowedKeys = [
-      'diameter',
-      'radius',
-      'circumference',
-      'area',
-    ];
+    $this->two = new Number('2');
 
     $this->validate(
       args: $arg,
-      allowedKeys: $allowedKeys,
-      maxArgs: 1
+      allowedInputs: [
+        ['diameter'],
+        ['radius'],
+        ['circumference'],
+        ['area'],
+      ],
     );
 
     $key = array_key_first($arg);
@@ -36,27 +35,26 @@ readonly class Circle extends Shape {
     switch ($key) {
       case 'diameter':
         $this->diameter = new Number($arg[$key]);
-        $this->radius = $this->diameter / new Number('2');
+        $this->setRadius();
         $this->setCircumference();
         $this->setArea();
         break;
       case 'radius':
         $this->radius = new Number($arg[$key]);
-        $this->diameter = $this->radius * new Number('2');
+        $this->setDiameter();
         $this->setCircumference();
         $this->setArea();
         break;
       case 'circumference':
         $this->circumference = new Number($arg[$key]);
         $this->diameter = $this->circumference / $this->pi;
-        $this->radius = $this->diameter / 2;
+        $this->setRadius();
         $this->setArea();
         break;
       case 'area':
         $this->area = new Number($arg[$key]);
-        $radiusSquared = (string) ($this->area / $this->pi);
-        $this->radius = new Number($radiusSquared)->sqrt();
-        $this->diameter = $this->radius * new Number('2');
+        $this->radius = ($this->area / $this->pi)->sqrt();
+        $this->setDiameter();
         $this->setCircumference();
         break;
     }
@@ -66,6 +64,14 @@ readonly class Circle extends Shape {
     $this->pi = new Number('3.14159265358979323846264338327950288');
   }
 
+  private function setDiameter() {
+    $this->diameter = $this->radius * $this->two;
+  }
+
+  private function setRadius() {
+    $this->radius = $this->diameter / $this->two;
+  }
+
   private function setArea() {
     $this->area = $this->pi * $this->radius * $this->radius;
   }
@@ -73,16 +79,4 @@ readonly class Circle extends Shape {
   private function setCircumference() {
     $this->circumference = $this->pi * $this->diameter;
   }
-
-  /* public function calculateArea(): float { */
-  /*   return $area ?? 5; */
-  /* } */
-  /**/
-  /* public function calculatePerimeter(): float { */
-  /*   return $circumference ?? 6; */
-  /* } */
-  /**/
-  /* public function calculateCentroid(): float { */
-  /*   return 7; */
-  /* } */
 }

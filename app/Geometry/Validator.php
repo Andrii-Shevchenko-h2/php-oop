@@ -10,6 +10,7 @@ trait Validator {
     array $allowedInputs = [],
   ) {
     $argsKeys = array_keys($args);
+
     foreach ($args as $argValue) {
       if ($argValue === null) {
         throw new \InvalidArgumentException("Bad Value: only non-null values are allowed");
