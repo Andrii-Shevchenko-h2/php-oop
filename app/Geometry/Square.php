@@ -40,6 +40,11 @@ readonly class Square extends Shape {
       ],
       [
         'result_key' => 'length',
+        'dependencies' => ['diagonal'],
+        'logic' => fn() => $this->diagonal / $this->two->sqrt() 
+      ],
+      [
+        'result_key' => 'length',
         'dependencies' => ['area'],
         'logic' => fn() => $this->area->sqrt(),
       ],
@@ -60,32 +65,19 @@ readonly class Square extends Shape {
       ],
     ];
 
-    $key = array_key_first($inputArray);
+    $key = array_key_first($inputArray); // validate allows max 1 key
 
-    // initialize value
-    switch ($key) {
-      case 'length':
-        $this->length = new Number($inputArray[$key]);
-        break;
-      case 'diagonal': // START WORKING FROM HERE TILL END
-        $this->diagonal = new Number($inputArray[$key]);
-        break;
-      case 'perimeter':
-        $this->perimeter = new Number($inputArray[$key]);
-        break;
-      case 'area':
-        $this->area = new Number($inputArray[$key]);
-        break;
-    }
+    // initialize first value
+    $this->{$key} = new Number($inputArray[$key]);
 
-    $calcAll = function() use ($inputArray, $parameters, $formulas) {
+    $setRemainingValues = function() use ($inputArray, $parameters, $formulas) {
       foreach ($formulas as $formula) {
         if (isset($this->{$formula['result_key']})) {
           continue;
         }
 
         foreach ($formula['dependencies'] as $dependency) {
-          if (!isset($dependency)) {
+          if (!isset($this->{$dependency})) {
             continue 2;
           }
         }
@@ -94,7 +86,7 @@ readonly class Square extends Shape {
       }
     };
 
-    $calcAll();
+    $setRemainingValues();
 
   }
 
