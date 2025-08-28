@@ -6,18 +6,16 @@ namespace App\Ancient;
 
 require_once(__DIR__ . '/Mail.php');
 
-use App\Ancient\Mail;
-
 readonly class Customer {
-  public int $age;
-  public Mail $mail;
+  protected int $age;
+  public \App\Ancient\Mail $mail;
 
   public function __construct(
-    public string $name,
-    public string $birthDate,
+    protected string $name,
+    protected string $birthDate,
   ) {
     $this->age = $this->getAge();
-    $this->mail = new Mail($name, $this->age);
+    $this->mail = new \App\Ancient\Mail($name, $this->age);
   }
 
   public function getAge(): int {

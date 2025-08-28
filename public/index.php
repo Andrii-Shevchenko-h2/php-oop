@@ -2,14 +2,13 @@
 
 declare(strict_types = 1);
 
-require_once('../app/modern/Customer.php');
-require_once('../app/ancient/Customer.php');
+require_once(dirname(__DIR__). '/vendor/autoload.php');
 
-use App\Modern;
-use App\Ancient;
+use App\Modern\Customer as ModernCustomer;
+use App\Ancient\Customer as AncientCustomer;
 
-$angelo = new Modern\Customer('Angelo Merte', '17.07.1954');
-echo $angelo->mail->address, PHP_EOL;
+$angelo = ModernCustomer::create('Aingelo Merte', '17.07.1954');
+echo $angelo?->mail->address, PHP_EOL;
 
-$hercules = new Ancient\Customer('Hercules', '12.08.1000');
-echo $hercules->mail->address, PHP_EOL;
+$hercules = new AncientCustomer('Hercules', '12.08.1000');
+echo $hercules?->mail->address, PHP_EOL;
