@@ -6,19 +6,30 @@ namespace App\Geometry;
 
 trait Validator {
   protected function validate(
-    array $args,
-    array $allowedInputs = [],
+    array $inputArray,
+    array $validArrayKeys,
   ) {
-    $argsKeys = array_keys($args);
+    $inputKeys = array_keys($inputArray);
 
-    foreach ($args as $argValue) {
-      if ($argValue === null) {
+    foreach ($inputArray as $inputValue) {
+      if ($inputValue === null) {
         throw new \InvalidArgumentException("Bad Value: only non-null values are allowed");
       }
     }
 
-    if (!in_array($argsKeys, $allowedInputs)) {
-      $readableAllowedKeys = implode(', ', $allowedInputs);
+    if (!in_array($inputKeys, $validArrayKeys)) {
+      $readableAllowedKeys = '';
+
+      foreach ($validArrayKeys as $keyPairArray) {
+        $readableAllowedKeys .= '[';
+
+        foreach ($keyPairArray as $singleKey) {
+          $readableAllowedKeys .= $validArrayKey[0] . ', ';
+        }
+
+        $readableAllowedKeys .= ']';
+      }
+
       throw new \InvalidArgumentException("Bad Key: only these keys are allowed: $readableAllowedKeys");
     }
   }
