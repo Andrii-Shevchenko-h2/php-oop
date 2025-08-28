@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace App\Geometry\Formulas;
 
 trait CircleFormulas {
-  final protected function getCircleFormulas() {
+  private function getCircleFormulas() {
     return [
       [
         'result_key' => 'diameter',

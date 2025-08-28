@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace App\Geometry;
 
 trait Validator {
-  protected function validate(
+  private function validate(
     array $inputArray,
     array $validArrayKeys,
   ) {

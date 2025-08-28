@@ -12,19 +12,19 @@ trait Consts {
   readonly public Number $four;
   readonly public Number $pi;
 
-  final protected function setTwo() {
+  private function setTwo() {
     $this->two = new Number('2');
   }
 
-  final protected function setFour() {
+  private function setFour() {
     $this->four = new Number('4');
   }
 
-  final protected function setPi() {
+  private function setPi() {
     $this->pi = new Number('3.14159265358979323846264338327950288');
   }
 
-  final protected function initializeConstants() {
+  private function initializeConstants() {
     $this->setTwo();
     $this->setFour();
     $this->setPi();

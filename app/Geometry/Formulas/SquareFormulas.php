@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace App\Geometry\Formulas;
 
 trait SquareFormulas {
-  final protected function getSquareFormulas() {
+  private function getSquareFormulas() {
     return [
       [
         'result_key' => 'length',

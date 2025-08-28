@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace App\Geometry\Formulas;
 
 trait SetValues {
-  protected function setRemainingValues(array $formulas) {
+  private function setRemainingValues(array $formulas) {
     foreach ($formulas as $formula) {
       if (isset($this->{$formula['result_key']})) {
         continue;
