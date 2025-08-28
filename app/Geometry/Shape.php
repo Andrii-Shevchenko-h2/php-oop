@@ -5,12 +5,13 @@ declare(strict_types = 1);
 namespace App\Geometry;
 
 use \App\Enums\Shapes;
-use \BcMath\Number;
 
 readonly abstract class Shape {
-  /* abstract protected function calculateArea(): Number; */
-  /* abstract protected function calculatePerimeter(): Number; */
-  /* abstract protected function calculateCentroid(): Number; */
+  use \App\Geometry\Consts;
+
+  public function __construct() {
+    $this->initializeConstants();
+  }
 
   final public static function create(
     Shapes $shape,

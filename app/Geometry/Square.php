@@ -8,17 +8,17 @@ use \BcMath\Number;
 
 readonly class Square extends Shape {
   use \App\Geometry\Validator;
-  use \App\Geometry\Consts;
-  use \App\Geometry\FormulasSetValues;
+  use \App\Geometry\Formulas\SetValues;
+  use \App\Geometry\Formulas\SquareFormulas;
 
-  public private(set) Number $length;
-  public private(set) Number $area;
-  public private(set) Number $perimeter;
-  public private(set) Number $diagonal;
-  public private(set) Number $two;
-  public private(set) Number $four;
+  public Number $length;
+  public Number $area;
+  public Number $perimeter;
+  public Number $diagonal;
 
   public function __construct(private array $inputArray) {
+    parent::__construct();
+
     $parameters = [
       ['length'],
       ['diagonal'],
@@ -26,52 +26,15 @@ readonly class Square extends Shape {
       ['area'],
     ];
 
-    $this->setTwo();
-    $this->four = $this->two * $this->two;
     $this->validate(
       inputArray: $inputArray,
       validArrayKeys: $parameters,
     );
 
-    // requires perfect order
-    $squareFormulas = [
-      [
-        'result_key' => 'length',
-        'dependencies' => ['perimeter'],
-        'logic' => fn() => $this->perimeter / $this->four,
-      ],
-      [
-        'result_key' => 'length',
-        'dependencies' => ['diagonal'],
-        'logic' => fn() => $this->diagonal / $this->two->sqrt() 
-      ],
-      [
-        'result_key' => 'length',
-        'dependencies' => ['area'],
-        'logic' => fn() => $this->area->sqrt(),
-      ],
-      [
-        'result_key' => 'diagonal',
-        'dependencies' => ['length'],
-        'logic' => fn() => $this->two->sqrt() * $this->length,
-      ],
-      [
-        'result_key' => 'perimeter',
-        'dependencies' => ['length'],
-        'logic' => fn() => $this->four * $this->length,
-      ],
-      [
-        'result_key' => 'area',
-        'dependencies' => ['length'],
-        'logic' => fn() => $this->length * $this->length,
-      ],
-    ];
-
     $key = array_key_first($inputArray);
 
-    // initialize first value
-    $this->{$key} = new Number($inputArray[$key]);
+    $this->{$key} = new Number($inputArray[$key]); // init first value
 
-    $this->setRemainingValues(formulas: $squareFormulas);
+    $this->setRemainingValues($this->getSquareFormulas()); // set rest
   }
 }
