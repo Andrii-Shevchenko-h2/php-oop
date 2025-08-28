@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace App\Modern;
 
+use \App\Modern\Mail;
+use \App\Enums\Names;
+
 class Customer {
-  readonly public \App\Modern\Mail $mail;
+  readonly public Mail $mail;
 
   protected int $age {
     get => (new \DateTimeImmutable())->diff(new \DateTimeImmutable($this->birthDate))->y;
@@ -15,15 +18,15 @@ class Customer {
     public private(set) string $name,
     readonly protected string $birthDate,
   ) {
-    $this->mail = new \App\Modern\Mail($name, $this->age);
+    $this->mail = new Mail($name, $this->age);
   }
 
   public static function create(string $name, string $birthDate) {
-    if (\App\Enums\Names::tryFrom($name) === null) {
+    if (Names::tryFrom($name) !== null) {
+      return new Customer($name, $birthDate);
+    } else {
       echo "Name $name is not on the list, operation aborted";
       return null;
-    } else {
-      return new Customer($name, $birthDate);
     }
   }
 }

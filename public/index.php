@@ -10,5 +10,5 @@ use App\Ancient\Customer as AncientCustomer;
 $angelo = ModernCustomer::create('Angelo Merte', '17.07.1954');
 echo $angelo?->mail->address, PHP_EOL;
 
-$hercules = new AncientCustomer('Hercules', '12.08.1000');
+$hercules = AncientCustomer::create('Hercules', '12.08.1000');
 echo $hercules?->mail->address, PHP_EOL;
