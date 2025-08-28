@@ -10,13 +10,13 @@ use \App\Enums\Names;
 class Customer {
   readonly public Mail $mail;
 
-  protected int $age {
+  public int $age {
     get => (new \DateTimeImmutable())->diff(new \DateTimeImmutable($this->birthDate))->y;
   }
 
   private function __construct(
-    public private(set) string $name,
-    readonly protected string $birthDate,
+    readonly public string $name,
+    readonly public string $birthDate,
   ) {
     $this->mail = new Mail($name, $this->age);
   }

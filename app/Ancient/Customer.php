@@ -8,7 +8,7 @@ use \App\Ancient\Mail;
 use \App\Enums\Names;
 
 readonly class Customer {
-  protected int $age;
+  public int $age;
   public Mail $mail;
 
   public function __construct(
@@ -17,6 +17,14 @@ readonly class Customer {
   ) {
     $this->age = $this->getAge();
     $this->mail = new Mail($name, $this->age);
+  }
+
+  public function getName(): string {
+    return $this->name;
+  }
+
+  public function getBirthDate(): string {
+    return $this->birthDate;
   }
 
   public function getAge(): int {
