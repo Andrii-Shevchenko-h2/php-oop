@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Modern;
+namespace App\Customer;
 
-use \App\Modern\Mail;
+use \App\Customer\Mail;
 use \App\Enums\Names;
 
 class Customer {

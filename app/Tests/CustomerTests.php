@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Tests;
 
-use \App\Modern\Customer;
+use \App\Customer\Customer;
 
 readonly class CustomerTests extends Tests {
   protected static function runTests() {
