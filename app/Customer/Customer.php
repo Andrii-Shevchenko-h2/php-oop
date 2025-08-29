@@ -4,21 +4,17 @@ declare(strict_types=1);
 
 namespace App\Customer;
 
-use \App\Customer\Mail;
 use \App\Enums\Names;
 
-class Customer {
-  readonly public Mail $mail;
-
-  public int $age {
-    get => (new \DateTimeImmutable())->diff(new \DateTimeImmutable($this->birthDate))->y;
-  }
+readonly class Customer {
+  use CalculatedData;
 
   private function __construct(
     readonly public string $name,
     readonly public string $birthDate,
   ) {
-    $this->mail = new Mail($name, $this->age);
+    $this->setAge();
+    $this->setMail();
   }
 
   public static function create(string $name, string $birthDate) {

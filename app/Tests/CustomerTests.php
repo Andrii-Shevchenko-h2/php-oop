@@ -22,7 +22,7 @@ readonly class CustomerTests extends Tests {
         Name: {$customer->name}
         Birth Date: {$customer->birthDate}
         Age: $customer->age
-        Mail: {$customer->mail->address}
+        Mail: {$customer->mail}
       ---
       CUSTOMER_TEST;
     };
