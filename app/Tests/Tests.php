@@ -10,6 +10,6 @@ readonly abstract class Tests {
   public static function runAllTests() {
     CircleTests::runTests();
     SquareTests::runTests();
-    CustomerTests::runTests();
+    UserTests::runTests();
   }
 }
