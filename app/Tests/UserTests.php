@@ -11,7 +11,7 @@ readonly class UserTests extends Tests {
     $angelo = User::create(
       name: 'Angelo Merte',
       birthDate: '17.07.1954',
-      joinDate: '27-06-2098 17:07',
+      joinDate: '27-06-1958 17:07',
       timeZone: 'Europe/Berlin',
     );
     $olaf = User::create(
@@ -39,7 +39,7 @@ readonly class UserTests extends Tests {
         Mail: $user->mail
         Member since: {$user->joinDateObject->diff($user->getNow())->format('%y Years, %m Months and %d Days')}
       ---
-      user_TEST . print_r($user->joinDateObject);
+      user_TEST;
     };
 
     $angeloTest = $generateuserTestText($angelo);

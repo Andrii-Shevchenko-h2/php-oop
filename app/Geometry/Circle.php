@@ -15,27 +15,18 @@ readonly class Circle extends Shape {
   public Number $radius;
   public Number $area;
   public Number $circumference;
+  public array $data;
 
   public function __construct(private array $inputArray) {
     parent::__construct();
 
-    $parameters = [
-        ['diameter'],
-        ['radius'],
-        ['circumference'],
-        ['area'],
-    ];
-
-    $this->validate(
-      inputArray: $inputArray,
-      validArrayKeys: $parameters,
-    );
+    $this->validate($inputArray, $this->getParameterKeys());
 
     $key = array_key_first($inputArray);
 
     $this->{$key} = new Number($inputArray[$key]);
 
     $this->setRemainingValues($this->getCircleFormulas());
-
+    $this->data = ['class' => @end(explode('\\', __CLASS__)), 'diameter' => $this->diameter, 'area' => $this->area, 'circumference' => $this->circumference, 'radius' => $this->radius];
   }
 }

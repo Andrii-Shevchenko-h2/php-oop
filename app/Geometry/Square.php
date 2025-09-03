@@ -15,26 +15,18 @@ readonly class Square extends Shape {
   public Number $area;
   public Number $perimeter;
   public Number $diagonal;
+  public array $data;
 
   public function __construct(private array $inputArray) {
     parent::__construct();
 
-    $parameters = [
-      ['length'],
-      ['diagonal'],
-      ['perimeter'],
-      ['area'],
-    ];
-
-    $this->validate(
-      inputArray: $inputArray,
-      validArrayKeys: $parameters,
-    );
+    $this->validate($inputArray, $this->getParameterKeys());
 
     $key = array_key_first($inputArray);
 
     $this->{$key} = new Number($inputArray[$key]); // init first value
 
     $this->setRemainingValues($this->getSquareFormulas()); // set rest
+    $this->data = ['class' => @end(explode('\\', __CLASS__)), 'length' => $this->length, 'area' => $this->area, 'perimeter' => $this->perimeter, 'diagonal' => $this->diagonal];
   }
 }

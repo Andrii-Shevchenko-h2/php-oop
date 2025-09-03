@@ -11,5 +11,6 @@ readonly abstract class Tests {
     CircleTests::runTests();
     SquareTests::runTests();
     UserTests::runTests();
+    ShapesCollectionTests::runTests();
   }
 }

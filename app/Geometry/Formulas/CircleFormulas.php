@@ -5,6 +5,15 @@ declare(strict_types = 1);
 namespace App\Geometry\Formulas;
 
 trait CircleFormulas {
+  private function getParameterKeys() {
+    return [
+      ['circumference'],
+      ['area'],
+      ['diameter'],
+      ['radius'],
+    ];
+  }
+
   private function getCircleFormulas() {
     return [
       [
