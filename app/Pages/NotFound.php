@@ -6,7 +6,8 @@ namespace App\Pages;
 
 readonly class NotFound extends PageSkeleton {
   public function __construct() {
-    $this->createDocument(body: 'Page not found');
+    $body = 'Page not found';
+    $this->createDocument(body: $body);
     print $this->document;
   }
 }

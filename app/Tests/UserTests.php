@@ -7,7 +7,7 @@ namespace App\Tests;
 use \App\User\User;
 
 readonly class UserTests extends Tests {
-  protected static function runTests() {
+  public static function runTests() {
     $angelo = User::create(
       name: 'Angelo Merte',
       birthDate: '17.07.1954',
@@ -31,7 +31,7 @@ readonly class UserTests extends Tests {
     $generateuserTestText = function(User $user) use (&$userNumber) {
       $userNumber++;
 
-      return <<< user_TEST
+      return <<< USER_TEST
       user $userNumber
         Name: $user->name
         Birth Date: $user->birthDate
@@ -39,18 +39,18 @@ readonly class UserTests extends Tests {
         Mail: $user->mail
         Member since: {$user->joinDateObject->diff($user->getNow())->format('%y Years, %m Months and %d Days')}
       ---
-      user_TEST;
+      USER_TEST;
     };
 
     $angeloTest = $generateuserTestText($angelo);
     $herculesTest = $generateuserTestText($hercules);
     $olafTest = $generateuserTestText($olaf);
 
-    print <<< user_TESTS
-    -----------user TESTS-------------
+    return <<< USER_TESTS
+    -----------USER TESTS-------------
     $angeloTest
     $herculesTest
     $olafTest
-    user_TESTS . PHP_EOL;
+    USER_TESTS . PHP_EOL;
   }
 }

@@ -13,7 +13,7 @@ use \App\Geometry\Square;
 use \BcMath\Number;
 
 readonly class ShapesCollectionTests extends Tests {
-  protected static function runTests(): void {
+  public static function runTests(): string {
     $circle = Shape::create(Shapes::CIRCLE, ['radius' => '5']);
     $square = Shape::create(Shapes::SQUARE, ['perimeter' => '5']);
 
@@ -31,7 +31,7 @@ readonly class ShapesCollectionTests extends Tests {
         ---
         CIRCLE_TEST;
       } elseif ($shape instanceof Square) {
-        return <<<SQUARE_TEST
+        return <<< SQUARE_TEST
         Shape $testNumber: Square
         Length: {$shape->length->value}
         Diagonal: {$shape->diagonal->value}
@@ -51,7 +51,7 @@ readonly class ShapesCollectionTests extends Tests {
       $output .= $generateShapeTest($shape, $testNumber);
     }
 
-    print <<<SHAPE_TESTS
+    return <<< SHAPE_TESTS
     ----------SHAPE_TESTS-----------
     $output
     SHAPE_TESTS . PHP_EOL;

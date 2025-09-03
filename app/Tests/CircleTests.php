@@ -8,7 +8,7 @@ use \App\Geometry\Shape;
 use \App\Enums\Shapes;
 
 readonly class CircleTests extends Tests {
-  protected static function runTests() {
+  public static function runTests(): string {
     $radiusCircle = Shape::create(Shapes::CIRCLE, ['radius' => '5']);
     $diameterCircle = Shape::create(Shapes::CIRCLE, ['diameter' => '5']);
     $circumferenceCircle = Shape::create(Shapes::CIRCLE, ['circumference' => '5']);
@@ -32,7 +32,7 @@ readonly class CircleTests extends Tests {
     $circumferenceCircleTest = $generateCircleTestText($circumferenceCircle, 'circumference = 5');
     $areaCircleTest = $generateCircleTestText($areaCircle, 'area = 5');
 
-    print <<< CIRCLE_TESTS
+    return <<< CIRCLE_TESTS
     ----------CIRCLE_TESTS-----------
     $radiusCircleTest
     $diameterCircleTest

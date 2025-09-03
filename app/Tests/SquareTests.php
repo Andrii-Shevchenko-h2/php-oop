@@ -8,7 +8,7 @@ use \App\Geometry\Shape;
 use \App\Enums\Shapes;
 
 readonly class SquareTests extends Tests {
-  protected static function runTests() {
+  public static function runTests():string {
     $lengthSquare = Shape::create(Shapes::SQUARE, ['length' => '5']);
     $diagonalSquare = Shape::create(Shapes::SQUARE, ['diagonal' => '5']);
     $perimeterSquare = Shape::create(Shapes::SQUARE, ['perimeter' => '5']);
@@ -32,7 +32,7 @@ readonly class SquareTests extends Tests {
     $perimeterSquareTest = $generateSquareTestText($perimeterSquare, 'perimeter = 5');
     $areaSquareTest = $generateSquareTestText($areaSquare, 'area = 5');
 
-    print <<< SQUARE_TESTS
+    return <<< SQUARE_TESTS
     ----------SQUARE_TESTS-----------
     $lengthSquareTest
     $diagonalSquareTest

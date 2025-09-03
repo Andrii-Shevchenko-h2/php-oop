@@ -10,6 +10,19 @@ readonly class PageSkeleton { // each method arg should be custom class
   protected string $bottom;
   public private(set) string $document;
 
+  final public function createDocument(
+    ?string $head = null,
+    ?string $body = null,
+    ?string $bottom = null,
+  ): string {
+    $this->setHead($head);
+    $this->setBody($body);
+    $this->closeDocument($bottom);
+    $this->setDocument();
+
+    return $this->document;
+  }
+
   final protected function setHead(?string $lines = null): void {
     $this->head = <<< TOP
     <!DOCTYPE HTML>
@@ -42,18 +55,5 @@ readonly class PageSkeleton { // each method arg should be custom class
 
   private function setDocument() {
     $this->document = $this->head . $this->body . $this->bottom;
-  }
-
-  final public function createDocument(
-    ?string $head = null,
-    ?string $body = null,
-    ?string $bottom = null,
-  ): string {
-    $this->setHead($head);
-    $this->setBody($body);
-    $this->closeDocument($bottom);
-    $this->setDocument();
-
-    return $this->document;
   }
 }

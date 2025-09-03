@@ -5,12 +5,15 @@ declare(strict_types = 1);
 namespace App\Tests;
 
 readonly abstract class Tests {
-  protected abstract static function runTests();
+  public abstract static function runTests();
 
-  public static function runAllTests() {
-    CircleTests::runTests();
-    SquareTests::runTests();
-    UserTests::runTests();
-    ShapesCollectionTests::runTests();
+  public static function runAllTests(): string {
+    $accumulatedTests = '';
+    $accumulatedTests .= CircleTests::runTests();
+    $accumulatedTests .= SquareTests::runTests();
+    $accumulatedTests .= UserTests::runTests();
+    $accumulatedTests .= ShapesCollectionTests::runTests();
+
+    return $accumulatedTests;
   }
 }
