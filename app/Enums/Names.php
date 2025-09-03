@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Enums;
 
-enum Names: string{
+enum Names: string {
   case AngeloMerte = 'Angelo Merte';
   case Hercules = 'Hercules';
   case OlafHolz = 'Olaf Holz';

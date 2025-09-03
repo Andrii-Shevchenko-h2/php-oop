@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Geometry;
 
-use App\CustomExceptions\AppException;
+use App\Exceptions\AppException;
 
 readonly class ShapesArray {
   public function __construct(public private(set) array $shapes) {
