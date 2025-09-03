@@ -6,9 +6,7 @@ namespace App\Pages;
 
 readonly class NotSet extends PageSkeleton {
   public function __construct() {
-    $this->setHead();
-    $this->setBody('Page not set. Visit again in the future!');
-    $this->closeHTML();
-    print $this->head . $this->body . $this->close;
+    $this->createDocument(body: 'The page is yet to be created. Try again in the future!');
+    print $this->document;
   }
 }

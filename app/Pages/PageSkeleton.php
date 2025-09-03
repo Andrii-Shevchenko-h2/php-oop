@@ -7,9 +7,10 @@ namespace App\Pages;
 readonly class PageSkeleton { // each method arg should be custom class
   protected string $head;
   protected string $body;
-  protected string $close;
+  protected string $bottom;
+  public private(set) string $document;
 
-  final public function setHead(?string $lines = null): void {
+  final protected function setHead(?string $lines = null): void {
     $this->head = <<< TOP
     <!DOCTYPE HTML>
     <html>
@@ -20,32 +21,39 @@ readonly class PageSkeleton { // each method arg should be custom class
     TOP;
   }
 
-  final public function setBody(?string $lines = null): void {
+  final protected function setBody(?string $lines = null): void {
     $this->body = <<< BODY
     <body>
-      $lines;
+      $lines
     BODY;
   }
 
-  final public function closeHTML(?string $lines = null): void {
+  final protected function closeDocument(?string $lines = null): void {
     if (!isset($this->body)) {
       AppException::HtmlCreate('closeWithoutBody');
     }
 
-    $this->close = <<< CLOSE_HTML
+    $this->bottom = <<< CLOSE_DOCUMENT
         $lines
       </body>
     </html>
-    CLOSE_HTML;
+    CLOSE_DOCUMENT;
   }
 
-  final public function getHTML() {
-    if (!isset($this->head)) {
-      AppException::HtmlCreate('headNotSet');
-    } elseif (!isset($this->body)) {
-      AppException::HtmlCreate('bodyNotSet');
-    }
+  private function setDocument() {
+    $this->document = $this->head . $this->body . $this->bottom;
+  }
 
-    return $this->head . $this->body;
+  final public function createDocument(
+    ?string $head = null,
+    ?string $body = null,
+    ?string $bottom = null,
+  ): string {
+    $this->setHead($head);
+    $this->setBody($body);
+    $this->closeDocument($bottom);
+    $this->setDocument();
+
+    return $this->document;
   }
 }
