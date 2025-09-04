@@ -24,21 +24,28 @@ readonly abstract class TestConstructor {
     $submitText = 'Try';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      if (!isset($testName)) {
-        $testName = $_POST['test-name'];
-        $submitText = 'Create';
-        $shapeEnum = Shape::getShapeEnum($testName);
-        $shapeClass = Shape::getShapeClass($shapeEnum);
-        $shapeParameters = $shapeClass::getParameterKeys();
+      if (isset($_POST['new-test'])) {
+        header("Location: " . $_SERVER['REQUEST_URI']);
       }
+
+      $testName = $_POST['test-name'];
+      $submitText = 'Create';
+      $shapeEnum = Shape::getShapeEnum($testName);
+      $shapeClass = Shape::getShapeClass($shapeEnum);
+      $shapeParameters = $shapeClass::getParameterKeys();
 
       if (isset($_POST['parameters'])) {
         $parameters = [
           $_POST['parameters'] => $_POST['parameter-value']
         ];
         $testClass = Tests::getTestClass(Tests::tryFrom($shapeEnum->value));
+        $newTestButton = <<< newTest
+        <form method="POST" action="">
+        <button type='submit' name='new-test'>Create new test</button>
+        </form>
+        newTest;
 
-        return $testClass::createTest($parameters);
+        return "<p><strong>$shapeEnum->value</strong> Test successfully created</p>" . nl2br($testClass::createTest($parameters)) . $newTestButton;
       }
     }
 
