@@ -12,7 +12,7 @@ use \App\Geometry\Circle;
 use \App\Geometry\Square;
 use \BcMath\Number;
 
-readonly class ShapesCollectionTests extends Tests {
+readonly class ShapesCollectionTests extends TestConstructor {
   public static function runTests(): string {
     $circle = Shape::create(Shapes::CIRCLE, ['radius' => '5']);
     $square = Shape::create(Shapes::SQUARE, ['perimeter' => '5']);

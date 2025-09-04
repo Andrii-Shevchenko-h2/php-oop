@@ -6,7 +6,7 @@ namespace App\Tests;
 
 use \App\User\User;
 
-readonly class UserTests extends Tests {
+readonly class UserTests extends TestConstructor {
   public static function runTests() {
     $angelo = User::create(
       name: 'Angelo Merte',

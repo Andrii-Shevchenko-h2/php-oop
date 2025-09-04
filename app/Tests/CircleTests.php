@@ -7,30 +7,12 @@ namespace App\Tests;
 use \App\Geometry\Shape;
 use \App\Enums\Shapes;
 
-readonly class CircleTests extends Tests {
+readonly class CircleTests extends TestConstructor {
   public static function runTests(): string {
-    $radiusCircle = Shape::create(Shapes::CIRCLE, ['radius' => '5']);
-    $diameterCircle = Shape::create(Shapes::CIRCLE, ['diameter' => '5']);
-    $circumferenceCircle = Shape::create(Shapes::CIRCLE, ['circumference' => '5']);
-    $areaCircle = Shape::create(Shapes::CIRCLE, ['area' => '5']);
-    $circleTestNumber = 0;
-
-    $generateCircleTestText = function(Shape $circleObject, ?string $input = null) use (&$circleTestNumber) {
-      $circleTestNumber++;
-      return <<< CIRCLE_TEST
-      Circle $circleTestNumber, input >> $input
-        Radius: $circleObject->radius
-        Diameter: $circleObject->diameter
-        Circumference: $circleObject->circumference
-        Area: $circleObject->area
-      ---
-      CIRCLE_TEST;
-    };
-
-    $radiusCircleTest = $generateCircleTestText($radiusCircle, 'radius = 5');
-    $diameterCircleTest = $generateCircleTestText($diameterCircle, 'diameter = 5');
-    $circumferenceCircleTest = $generateCircleTestText($circumferenceCircle, 'circumference = 5');
-    $areaCircleTest = $generateCircleTestText($areaCircle, 'area = 5');
+    $radiusCircleTest = self::createTest(['radius' => '5']);
+    $diameterCircleTest = self::createTest(['diameter' => '5']);
+    $circumferenceCircleTest = self::createTest(['circumference' => '5']);
+    $areaCircleTest = self::createTest(['area' => '5']);
 
     return <<< CIRCLE_TESTS
     ----------CIRCLE_TESTS-----------
@@ -39,5 +21,19 @@ readonly class CircleTests extends Tests {
     $circumferenceCircleTest
     $areaCircleTest
     CIRCLE_TESTS . PHP_EOL;
+  }
+
+  public static function createTest(array $input) {
+    $circleObject = Shape::create(Shapes::CIRCLE, $input);
+    $inputString = key($input) . ' = ' . current($input);
+
+    return <<< CIRCLE_TEST
+    Circle input >> $inputString
+      Radius: $circleObject->radius
+      Diameter: $circleObject->diameter
+      Circumference: $circleObject->circumference
+      Area: $circleObject->area
+    ---
+    CIRCLE_TEST;
   }
 }

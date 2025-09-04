@@ -5,14 +5,7 @@ declare(strict_types = 1);
 namespace App\Geometry\Formulas;
 
 trait SquareFormulas {
-  private function getParameterKeys() {
-    return [
-      ['length'],
-      ['diagonal'],
-      ['perimeter'],
-      ['area'],
-    ];
-  }
+  use SquareParameterKeys;
 
   private function getSquareFormulas() {
     return [

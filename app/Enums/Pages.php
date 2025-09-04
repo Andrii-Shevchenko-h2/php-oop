@@ -9,6 +9,7 @@ enum Pages: string {
   case TESTS = '/tests';
   case NOT_FOUND = '/404';
   case NOT_SET = '/notset';
+  case DEBUG = '/debug';
 
   public function getClassName(Pages $page): string {
     return match($page) {
@@ -16,6 +17,7 @@ enum Pages: string {
       self::TESTS => 'Tests',
       self::NOT_FOUND => 'NotFound',
       self::NOT_SET => 'NotSet',
+      self::DEBUG => 'Debug',
       default => 'NotFound',
     };
   }

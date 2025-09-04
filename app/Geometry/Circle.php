@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\Geometry;
 
 use \BcMath\Number;
+use \App\Exceptions\AppException;
 
 readonly class Circle extends Shape {
   use \App\Geometry\Validator;
@@ -17,14 +18,20 @@ readonly class Circle extends Shape {
   public Number $circumference;
   public array $data;
 
-  public function __construct(private array $inputArray) {
+  public function __construct(private array $input) {
     parent::__construct();
 
-    $this->validate($inputArray, $this->getParameterKeys());
+    $this->setParameterKeys();
 
-    $key = array_key_first($inputArray);
+    $this->validate($input, $this->parameters);
 
-    $this->{$key} = new Number($inputArray[$key]);
+    $key = array_key_first($input);
+
+    try {
+      $this->{$key} = new Number($input[$key]);
+    } catch (\ValueError) {
+      AppException::badShapeParameterValue($input[$key]);
+    }
 
     $this->setRemainingValues($this->getCircleFormulas());
     $this->data = ['class' => @end(explode('\\', __CLASS__)), 'diameter' => $this->diameter, 'area' => $this->area, 'circumference' => $this->circumference, 'radius' => $this->radius];

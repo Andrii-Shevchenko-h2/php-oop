@@ -16,7 +16,7 @@ readonly class Router {
     if (isset($URI_FULL)) {
       $URI = explode('?', $URI_FULL)[0];
     } else {
-      $URI = '404';
+      $URI = '/debug';
     }
 
     $page = self::getPage($URI);

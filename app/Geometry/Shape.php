@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\Geometry;
 
 use \App\Enums\Shapes;
+use \App\Exceptions\AppException;
 
 readonly abstract class Shape {
   use \App\Geometry\Consts;
@@ -15,14 +16,24 @@ readonly abstract class Shape {
 
   final public static function create(
     Shapes $shape,
-    array ...$constructArgs
+    array $parameters,
   ): Shape {
-    $className = '\\' . __NAMESPACE__ . '\\' . $shape->value;
+    $shapeClass = self::getShapeClass($shape);
 
-    if (!class_exists(class: $className, autoload: true)) {
-      throw new \LogicException("Unable to load class: $className");
+    return new $shapeClass($parameters);
+  }
+
+  final public static function getShapeEnum(string $shape): Shapes {
+    return Shapes::tryFrom($shape) ?? AppException::badShape($shape);
+  }
+
+  final public static function getShapeClass(Shapes $shape): string {
+    $shapeClass = '\\' . __NAMESPACE__ . '\\' . $shape->value;
+
+    if (!class_exists(class: $shapeClass, autoload: true)) {
+      AppException::shapeClassNotSet($shape->value);
     }
 
-    return new $className(...$constructArgs);
+    return $shapeClass;
   }
 }

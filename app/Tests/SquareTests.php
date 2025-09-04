@@ -7,30 +7,12 @@ namespace App\Tests;
 use \App\Geometry\Shape;
 use \App\Enums\Shapes;
 
-readonly class SquareTests extends Tests {
-  public static function runTests():string {
-    $lengthSquare = Shape::create(Shapes::SQUARE, ['length' => '5']);
-    $diagonalSquare = Shape::create(Shapes::SQUARE, ['diagonal' => '5']);
-    $perimeterSquare = Shape::create(Shapes::SQUARE, ['perimeter' => '5']);
-    $areaSquare = Shape::create(Shapes::SQUARE, ['area' => '5']);
-    $squareTestNumber = 0;
-
-    $generateSquareTestText = function(Shape $squareObject, ?string $input = null) use (&$squareTestNumber) {
-      $squareTestNumber++;
-      return <<< SQUARE_TEST
-      Square $squareTestNumber, input >> $input
-        Length: $squareObject->length
-        Diagonal: $squareObject->diagonal
-        Perimeter: $squareObject->perimeter
-        Area: $squareObject->area
-      ---
-      SQUARE_TEST;
-    };
-
-    $lengthSquareTest = $generateSquareTestText($lengthSquare, 'length = 5');
-    $diagonalSquareTest = $generateSquareTestText($diagonalSquare, 'diagonal = 5');
-    $perimeterSquareTest = $generateSquareTestText($perimeterSquare, 'perimeter = 5');
-    $areaSquareTest = $generateSquareTestText($areaSquare, 'area = 5');
+readonly class SquareTests extends TestConstructor {
+  public static function runTests(): string {
+    $lengthSquareTest = self::createTest(['length' => '5']);
+    $diagonalSquareTest = self::createTest(['diagonal' => '5']);
+    $perimeterSquareTest = self::createTest(['perimeter' => '5']);
+    $areaSquareTest = self::createTest(['area' => '5']);
 
     return <<< SQUARE_TESTS
     ----------SQUARE_TESTS-----------
@@ -39,5 +21,19 @@ readonly class SquareTests extends Tests {
     $perimeterSquareTest
     $areaSquareTest
     SQUARE_TESTS . PHP_EOL;
+  }
+
+  public static function createTest(array $input): string {
+    $squareObject = Shape::create(Shapes::SQUARE, $input);
+    $inputString = key($input) . ' = ' . current($input);
+
+    return <<< SQUARE_TEST
+    Square input >> $inputString
+      Length: $squareObject->length
+      Diagonal: $squareObject->diagonal
+      Perimeter: $squareObject->perimeter
+      Area: $squareObject->area
+    ---
+    SQUARE_TEST;
   }
 }
