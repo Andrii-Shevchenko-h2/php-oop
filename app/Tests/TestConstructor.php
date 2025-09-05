@@ -35,8 +35,12 @@ readonly abstract class TestConstructor {
       header("Location: " . $_SERVER['REQUEST_URI']);
     }
 
-    if (!isset($_SESSION['testName']) && isset($_POST['test-name'])) {
-      $_SESSION['testName'] = $_POST['test-name'];
+    if (!isset($_SESSION['testName']) && isset($_POST['test-name']) || isset($_GET['new'])) {
+      if (isset($_POST['test-name'])) {
+        $_SESSION['testName'] = $_POST['test-name'];
+      } else {
+        $_SESSION['testName'] = $_GET['new'];
+      }
       $_SESSION['submitText'] = 'Create';
       $_SESSION['shapeEnum'] = Shape::getShapeEnum($_SESSION['testName']);
       $_SESSION['shapeClass'] = Shape::getShapeClass($_SESSION['shapeEnum']);
