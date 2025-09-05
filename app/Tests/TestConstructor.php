@@ -21,73 +21,92 @@ readonly abstract class TestConstructor {
   }
 
   public static function getDocumentForm(): string {
-    $submitText = 'Try';
+    session_start();
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      if (isset($_POST['new-test'])) {
-        header("Location: " . $_SERVER['REQUEST_URI']);
-      }
+    self::setFormValues();
 
-      $testName = $_POST['test-name'];
-      $submitText = 'Create';
-      $shapeEnum = Shape::getShapeEnum($testName);
-      $shapeClass = Shape::getShapeClass($shapeEnum);
-      $shapeParameters = $shapeClass::getParameterKeys();
+    return self::generateForm();
+  }
 
-      if (isset($_POST['parameters'])) {
-        $parameters = [
-          $_POST['parameters'] => $_POST['parameter-value']
-        ];
-        $testClass = Tests::getTestClass(Tests::tryFrom($shapeEnum->value));
-        $newTestButton = <<< newTest
-        <form method="POST" action="">
-        <button type='submit' name='new-test'>Create new test</button>
-        </form>
-        newTest;
-
-        return "<p><strong>$shapeEnum->value</strong> Test successfully created</p>" . nl2br($testClass::createTest($parameters)) . $newTestButton;
-      }
+  public static function setFormValues() {
+    if (isset($_POST['new-test'])) {
+      session_unset();
+      session_destroy();
+      header("Location: " . $_SERVER['REQUEST_URI']);
     }
 
-    $formStart = <<< START
-    <form method="POST" action="">
-      <label for='test-name'>Test name:</label><br>
-      <input id='test-name' name='test-name' type='text' value='$testName'><br>
-    START;
-
-    $dropdownMenuOptions = '';
-
-    foreach ($shapeParameters as $thisParameters) {
-      foreach ($thisParameters as $option) {
-        $dropdownMenuOptions .= "<option value='$option'>$option</option>";
-      }
+    if (!isset($_SESSION['testName']) && isset($_POST['test-name'])) {
+      $_SESSION['testName'] = $_POST['test-name'];
+      $_SESSION['submitText'] = 'Create';
+      $_SESSION['shapeEnum'] = Shape::getShapeEnum($_SESSION['testName']);
+      $_SESSION['shapeClass'] = Shape::getShapeClass($_SESSION['shapeEnum']);
+      $_SESSION['shapeParameters'] = $_SESSION['shapeClass']::getParameterKeys();
     }
 
-    if (isset($thisParameters)) {
+    if (!isset($_SESSION['parameters']) && isset($_POST['parameters'])) {
+      $_SESSION['parameters'] = [$_POST['parameters'] => $_POST['parameter-value']];
+      $_SESSION['testClass'] = Tests::getTestClass(Tests::tryFrom($_SESSION['shapeEnum']->value));
+    }
+  }
+
+  public static function generateForm(): string {
+    $testName = $_SESSION['testName'] ?? '';
+    $submitText = $_SESSION['submitText'] ?? 'Try';
+    $shapeEnum = $_SESSION['shapeEnum'] ?? null;
+    $shapeClass = $_SESSION['shapeClass'] ?? null;
+    $shapeParameters = $_SESSION['shapeParameters'] ?? null;
+    $parameters = $_SESSION['parameters'] ?? null;
+    $testClass = $_SESSION['testClass'] ?? null;
+    $dropdownAndInput = '';
+
+    if (isset($shapeParameters)) {
+      $dropdownMenuOptions = '';
+
+      foreach ($shapeParameters as $thisParameters) {
+        foreach ($thisParameters as $option) {
+          $dropdownMenuOptions .= "<option value='$option'>$option</option>";
+        }
+      }
+
       $dropdownMenu = <<< DROPDOWN
-      <label for='parameters'>Choose parameter:</label><br>
+      <label for='parameters'>Choose parameter:</label>
       <select name='parameters' id='parameters'>
         $dropdownMenuOptions
-      </select><br>
+      </select>
       DROPDOWN;
 
-      $inputValue = <<< VALUE
-      <label for='parameter-value'>Value:</label><br>
-      <input id='parameter-value' name='parameter-value' type='number'><br>
-      VALUE;
+      $setValue = <<< INPUT
+      <label for='parameter-value'>Value:</label>
+      <input id='parameter-value' name='parameter-value' type='number' min='0'>
+      INPUT;
+
+      $dropdownAndInput = <<< VALUES
+      $dropdownMenu
+      $setValue
+      VALUES;
     }
 
+    if (isset($parameters)) {
+      $createdTest = nl2br($testClass::createTest($parameters));
 
-    $formMiddle = <<< MIDDLE
-    $dropdownMenu
-    $inputValue
-    MIDDLE;
+      $form = <<< DOCUMENT
+      <form method="POST" action="">
+        <p><strong>{$shapeEnum->value}</strong> Test successfully created</p>
+        $createdTest
+        <button type='submit' name='new-test'>Create new test</button>
+      </form>
+      DOCUMENT;
+    } else {
+      $form = <<< DOCUMENT
+      <form method="POST" action="">
+        <label for='test-name'>Test name:</label>
+        <input id='test-name' name='test-name' type='text' value='$testName'>
+        $dropdownAndInput
+        <input type='submit' value='$submitText'>
+      </form>
+      DOCUMENT;
+    }
 
-    $formEnd = <<< END
-      <input type='submit' value='$submitText'>
-    </form>
-    END;
-
-    return $formStart. $formMiddle .$formEnd;
+    return nl2br($form);
   }
 }
