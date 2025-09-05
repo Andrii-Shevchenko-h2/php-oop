@@ -1,16 +1,18 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Tests;
 
 use \App\Geometry\Shape;
 use \App\Enums\Tests;
 
-readonly abstract class TestConstructor {
+readonly abstract class TestConstructor
+{
   public abstract static function runTests();
 
-  public static function runAllTests(): string {
+  public static function runAllTests(): string
+  {
     $accumulatedTests = '';
     $accumulatedTests .= CircleTests::runTests();
     $accumulatedTests .= SquareTests::runTests();
@@ -20,7 +22,8 @@ readonly abstract class TestConstructor {
     return $accumulatedTests;
   }
 
-  public static function getDocumentForm(): string {
+  public static function getDocumentForm(): string
+  {
     session_start();
 
     self::setFormValues();
@@ -28,7 +31,8 @@ readonly abstract class TestConstructor {
     return self::generateForm();
   }
 
-  public static function setFormValues() {
+  public static function setFormValues()
+  {
     if (isset($_POST['new-test'])) {
       session_unset();
       session_destroy();
@@ -53,7 +57,8 @@ readonly abstract class TestConstructor {
     }
   }
 
-  public static function generateForm(): string {
+  public static function generateForm(): string
+  {
     $testName = $_SESSION['testName'] ?? '';
     $submitText = $_SESSION['submitText'] ?? 'Try';
     $shapeEnum = $_SESSION['shapeEnum'] ?? null;

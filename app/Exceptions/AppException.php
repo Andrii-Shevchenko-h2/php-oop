@@ -1,11 +1,44 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Exceptions;
 
-class AppException {
-  public static function invalidTestParameterURI(?string $parameter = null): void {
+class AppException
+{
+  public static function badFilename(?string $fileName = null): void
+  {
+    $info = <<< invalidParameterURI
+    Excusest me sire, thou hast entered an invalid filename $fileName
+    invalidParameterURI;
+
+    self::generateException($info);
+    exit(202);
+  }
+
+  public static function longFilename(?string $fileName = null): void
+  {
+    $info = <<< invalidParameterURI
+    Excusest me sire, thou hast usedeth a filename, the length of which is too long
+    To be exact, it was {mb_strlen($fileName)} characters
+    invalidParameterURI;
+
+    self::generateException($info);
+    exit(202);
+  }
+
+  public static function badFileExtension(?string $fileExtension = null): void
+  {
+    $info = <<< invalidParameterURI
+    Excusest me sire, thou hast usedeth an invalid file extension $fileExtension
+    invalidParameterURI;
+
+    self::generateException($info);
+    exit(202);
+  }
+
+  public static function invalidTestParameterURI(?string $parameter = null): void
+  {
     $info = <<< invalidParameterURI
     Excusest me sire, thou hast entered an invalid test URI parameter < $parameter >
     invalidParameterURI;
@@ -14,7 +47,8 @@ class AppException {
     exit(202);
   }
 
-  public static function badShapeParameterValue(?string $value = null): void {
+  public static function badShapeParameterValue(?string $value = null): void
+  {
     $info = <<< badShapeValue
     Excusest me sire, thou hast inputted a bad shape parameter value < $value >
     badShapeValue;
@@ -23,7 +57,8 @@ class AppException {
     exit(205);
   }
 
-  public static function badShapeParameterKey(?string $key = null): void {
+  public static function badShapeParameterKey(?string $key = null): void
+  {
     $info = <<< badShapeKey
     Excusest me sire, thou hast inputted a bad shape parameter key < $key >
     badShapeKey;
@@ -32,7 +67,8 @@ class AppException {
     exit(204);
   }
 
-  public static function pageNotSet(?string $page = null): void {
+  public static function pageNotSet(?string $page = null): void
+  {
     $info = <<< pageNotSet
     Excusest me sire, thou hast accessedeth a valid page that hath yet to be created
     Visitest < $page > sometime in the future!
@@ -42,7 +78,8 @@ class AppException {
     exit(200);
   }
 
-  public static function shapeClassNotSet(?string $shape = null): void {
+  public static function shapeClassNotSet(?string $shape = null): void
+  {
     $info = <<< shapeClassNotSet
     Excusest me sire, thou hast inputted a correct shape
     However we are yet to treat it in any way, shape or form < $shape >
@@ -52,7 +89,8 @@ class AppException {
     exit(210);
   }
 
-  public static function badShape(?string $shape = null): void {
+  public static function badShape(?string $shape = null): void
+  {
     $info = <<< badShape
     Excusest me sire, thou hast inputted a shape that has is outright wrong < $shape >
     badShape;
@@ -80,7 +118,8 @@ class AppException {
     exit(200);
   }
 
-  private static function generateException(?string $info = null): void {
+  private static function generateException(?string $info = null): void
+  {
     $msgHead = self::getColorString('Oh dio! A horrendous exception hath occured!', 'errorHead');
     $message = <<< divineErrorMessage
     Thine divine message iseth:
@@ -91,9 +130,10 @@ class AppException {
     print $msgHead . PHP_EOL . (self::getColorString($message));
   }
 
-  private static function getColorString(string $str, ?string $mode = null) {
+  private static function getColorString(string $str, ?string $mode = null)
+  {
     if (!isset($_SERVER['REQUEST_URI'])) {
-      $color = match($mode) {
+      $color = match ($mode) {
         'errorHead' => ["\033[41m" . "\033[30m", "\033[0m"],
         default => ["\033[31m", "\033[0m"],
       };

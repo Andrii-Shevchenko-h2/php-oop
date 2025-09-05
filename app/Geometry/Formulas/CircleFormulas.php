@@ -1,23 +1,28 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Geometry\Formulas;
 
-trait CircleFormulas {
+use \App\Geometry\BcNumbers;
+
+// I regret making this a trait and having entire Formulas directory
+trait CircleFormulas
+{
   use CircleParameterKeys;
 
-  private function getCircleFormulas() {
+  private function getCircleFormulas()
+  {
     return [
       [
         'result_key' => 'diameter',
         'dependencies' => ['circumference'],
-        'logic' => fn() => $this->circumference / $this->pi,
+        'logic' => fn() => $this->circumference / BcNumbers::getPi(),
       ],
       [
         'result_key' => 'radius',
         'dependencies' => ['area'],
-        'logic' => fn() => ($this->area / $this->pi)->sqrt(),
+        'logic' => fn() => ($this->area / BcNumbers::getPi())->sqrt(),
       ],
       [
         'result_key' => 'radius',
