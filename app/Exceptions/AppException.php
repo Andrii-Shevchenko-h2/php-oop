@@ -6,6 +6,16 @@ namespace App\Exceptions;
 
 class AppException
 {
+  public static function viewUnsupportedInclude(?string $view = null): void
+  {
+    $info = <<< invalidParameterURI
+    Excusest me sire, thou hast entered an invalid view type {gettype($view)}
+    invalidParameterURI;
+
+    self::generateException($info);
+    exit(212);
+  }
+
   public static function badFilename(?string $fileName = null): void
   {
     $info = <<< invalidParameterURI

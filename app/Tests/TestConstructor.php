@@ -11,17 +11,6 @@ readonly abstract class TestConstructor
 {
   public abstract static function runTests();
 
-  public static function runAllTests(): string
-  {
-    $accumulatedTests = '';
-    $accumulatedTests .= CircleTests::runTests();
-    $accumulatedTests .= SquareTests::runTests();
-    $accumulatedTests .= UserTests::runTests();
-    $accumulatedTests .= ShapesCollectionTests::runTests();
-
-    return $accumulatedTests;
-  }
-
   public static function getDocumentForm(): string
   {
     session_start();

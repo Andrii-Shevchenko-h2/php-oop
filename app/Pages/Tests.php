@@ -1,17 +1,19 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Pages;
 
 use \App\Tests as UnitTests;
 use \App\Exceptions\AppException;
 
-readonly class Tests extends PageSkeleton implements RequestParser {
+readonly class Tests extends PageSkeleton implements RequestParser
+{
   private string $parsedGet;
   private string $parsedPost;
 
-  public function __construct() {
+  public function __construct()
+  {
     $this->parseGET();
     $body = '<p>Welcome to Tests!</p>';
 
@@ -23,21 +25,21 @@ readonly class Tests extends PageSkeleton implements RequestParser {
     print $this->document;
   }
 
-  public function parseGET(): void {
+  public function parseGET(): void
+  {
     if (isset($_GET['unit'])) {
-      $this->parsedGet = '<p>Welcome to Unit Tests!</p>' . match($_GET['unit']) {
-        'all', '' => nl2br(UnitTests\TestConstructor::runAllTests()),
+      $this->parsedGet = '<p>Welcome to Unit Tests!</p>' . match ($_GET['unit']) {
+        'all', '' => nl2br(UnitTests\AllTests::runTests()),
         'circle' => nl2br(UnitTests\CircleTests::runTests()),
         'square' => nl2br(UnitTests\SquareTests::runTests()),
         'user' => nl2br(UnitTests\UserTests::runTests()),
-        'shapes-collection' => nl2br(UnitTests\ShapesCollectionTests::runTests()),
         default => AppException::invalidTestParameterURI($_GET['unit']),
       };
     } elseif (isset($_GET['create'])) {
       $parameters = $_GET;
       unset($parameters['create']);
 
-      $this->parsedGet = '<p>Welcome to Test Creator!</p>' . match($_GET['create']) {
+      $this->parsedGet = '<p>Welcome to Test Creator!</p>' . match ($_GET['create']) {
         'circle' => nl2br(UnitTests\CircleTests::createTest($parameters)),
         'square' => nl2br(UnitTests\SquareTests::createTest($parameters)),
         '', 'new' => UnitTests\TestConstructor::getDocumentForm(),
@@ -46,7 +48,8 @@ readonly class Tests extends PageSkeleton implements RequestParser {
     }
   }
 
-  public function parsePOST() {
+  public function parsePOST()
+  {
     // TODO: implement
   }
 }

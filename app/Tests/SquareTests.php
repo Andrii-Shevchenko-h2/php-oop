@@ -1,14 +1,16 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Tests;
 
 use \App\Geometry\Shape;
 use \App\Enums\Shapes;
 
-readonly class SquareTests extends TestConstructor {
-  public static function runTests(): string {
+readonly class SquareTests extends TestConstructor
+{
+  public static function runTests(): string
+  {
     $lengthSquareTest = self::createTest(['length' => '5']);
     $diagonalSquareTest = self::createTest(['diagonal' => '5']);
     $perimeterSquareTest = self::createTest(['perimeter' => '5']);
@@ -23,7 +25,8 @@ readonly class SquareTests extends TestConstructor {
     SQUARE_TESTS . PHP_EOL;
   }
 
-  public static function createTest(array $input): string {
+  public static function createTest(array $input): string
+  {
     $squareObject = Shape::create(Shapes::SQUARE, $input);
     $inputString = key($input) . ' = ' . current($input);
 
