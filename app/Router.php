@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App;
 
 use \App\View;
+use \App\Enums\Pages;
 use \App\Enums\StaticExtensions;
 
 
@@ -27,7 +28,26 @@ readonly abstract class Router
     }
 
     // Handle normal routing
-    View::fetch($URI);
+    self::fetchPage($URI);
+  }
+
+  private static function fetchPage(string $URI)
+  {
+    $page = Pages::tryPublic($URI) ?? Pages::NOT_FOUND;
+    $allRequiredPages = Pages::pageDependencies($page);
+    $allFilePaths = [];
+
+    foreach ($allRequiredPages as $requiredPage) {
+      $potentialFilePath = Pages::getFilePath($requiredPage);
+
+      if (file_exists($potentialFilePath)) {
+        $allFilePaths[] = $potentialFilePath;
+      } else {
+        $allFilePaths[] = Pages::getFilePath(Pages::NOT_SET);
+      }
+    }
+
+    return View::render($allFilePaths);
   }
 
   private static function isStaticFile(string $uri): bool
@@ -39,7 +59,7 @@ readonly abstract class Router
     return StaticExtensions::tryFrom($extension) === null ? false : true;
   }
 
-  private static function serveStaticFile(string $uri): void
+  private static function serveStaticFile(string $uri): void // only public
   {
     $filePath = APP_ROOT . '/public' . $uri;
 

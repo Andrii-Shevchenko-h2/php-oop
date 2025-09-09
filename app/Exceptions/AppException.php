@@ -6,6 +6,16 @@ namespace App\Exceptions;
 
 class AppException
 {
+  public static function unvalidTest(?string $test = null): void
+  {
+    $info = <<< invalidParameterURI
+    Excusest me sire, thou hast entered an invalid test $test
+    invalidParameterURI;
+
+    self::generateException($info);
+    exit(214);
+  }
+
   public static function viewUnsupportedInclude(?string $view = null): void
   {
     $info = <<< invalidParameterURI
@@ -34,7 +44,7 @@ class AppException
     invalidParameterURI;
 
     self::generateException($info);
-    exit(202);
+    exit(217);
   }
 
   public static function badFileExtension(?string $fileExtension = null): void
@@ -44,7 +54,7 @@ class AppException
     invalidParameterURI;
 
     self::generateException($info);
-    exit(202);
+    exit(218);
   }
 
   public static function invalidTestParameterURI(?string $parameter = null): void
@@ -54,7 +64,7 @@ class AppException
     invalidParameterURI;
 
     self::generateException($info);
-    exit(202);
+    exit(219);
   }
 
   public static function badShapeParameterValue(?string $value = null): void

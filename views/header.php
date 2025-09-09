@@ -18,7 +18,7 @@ use \App\View;
   <header>
     <nav class="navMenu">
       <p><a href='/'>PHP OOP Training</a></p>
-      <?= View::generateNavigationLinks() ?>
+      <?php View::render('helpers/nav_link_generator.php') ?>
     </nav>
   </header>
   <main>

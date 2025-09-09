@@ -1,39 +1,33 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Tests;
 
-use \App\Geometry\Shape;
+use \App\View;
 use \App\Enums\Shapes;
+use \App\Geometry\ShapeCreator;
 
-readonly class CircleTests extends TestConstructor {
-  public static function runTests(): string {
+readonly class CircleTests extends TestConstructor
+{
+  public static function runTests(): void
+  {
     $radiusCircleTest = self::createTest(['radius' => '5']);
     $diameterCircleTest = self::createTest(['diameter' => '5']);
     $circumferenceCircleTest = self::createTest(['circumference' => '5']);
     $areaCircleTest = self::createTest(['area' => '5']);
-
-    return <<< CIRCLE_TESTS
-    ----------CIRCLE_TESTS-----------
-    $radiusCircleTest
-    $diameterCircleTest
-    $circumferenceCircleTest
-    $areaCircleTest
-    CIRCLE_TESTS . PHP_EOL;
   }
 
-  public static function createTest(array $input) {
-    $circleObject = Shape::create(Shapes::CIRCLE, $input);
-    $inputString = key($input) . ' = ' . current($input);
+  public static function createTest(array $input)
+  {
+    $circleData = new ShapeCreator(Shapes::CIRCLE, $input)->data;
 
-    return <<< CIRCLE_TEST
-    Circle input >> $inputString
-      Radius: $circleObject->radius
-      Diameter: $circleObject->diameter
-      Circumference: $circleObject->circumference
-      Area: $circleObject->area
-    ---
-    CIRCLE_TEST;
+    try {
+      $inputString = key($input) . ' = ' . current($input);
+    } catch (\Throwable) {
+      $inputString = 'Multi-dimensional input preview not available';
+    }
+
+    View::render('tests/circle.php', ['circleData' => $circleData, 'inputString' => $inputString]);
   }
 }

@@ -4,39 +4,30 @@ declare(strict_types=1);
 
 namespace App\Tests;
 
-use \App\Geometry\Shape;
+use \App\View;
 use \App\Enums\Shapes;
+use \App\Geometry\ShapeCreator;
 
 readonly class SquareTests extends TestConstructor
 {
-  public static function runTests(): string
+  public static function runTests(): void
   {
     $lengthSquareTest = self::createTest(['length' => '5']);
     $diagonalSquareTest = self::createTest(['diagonal' => '5']);
     $perimeterSquareTest = self::createTest(['perimeter' => '5']);
     $areaSquareTest = self::createTest(['area' => '5']);
-
-    return <<< SQUARE_TESTS
-    ----------SQUARE_TESTS-----------
-    $lengthSquareTest
-    $diagonalSquareTest
-    $perimeterSquareTest
-    $areaSquareTest
-    SQUARE_TESTS . PHP_EOL;
   }
 
-  public static function createTest(array $input): string
+  public static function createTest(array $input): void
   {
-    $squareObject = Shape::create(Shapes::SQUARE, $input);
-    $inputString = key($input) . ' = ' . current($input);
+    $squareData = new ShapeCreator(Shapes::SQUARE, $input)->data;
 
-    return <<< SQUARE_TEST
-    Square input >> $inputString
-      Length: $squareObject->length
-      Diagonal: $squareObject->diagonal
-      Perimeter: $squareObject->perimeter
-      Area: $squareObject->area
-    ---
-    SQUARE_TEST;
+    try {
+      $inputString = key($input) . ' = ' . current($input);
+    } catch (\Throwable) {
+      $inputString = 'Multi-dimensional input preview not available';
+    }
+
+    View::render('tests/square.php', ['squareData' => $squareData, 'inputString' => $inputString]);
   }
 }

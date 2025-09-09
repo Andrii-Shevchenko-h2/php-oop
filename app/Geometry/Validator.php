@@ -6,7 +6,8 @@ namespace App\Geometry;
 
 use \App\Exceptions\AppException;
 
-trait Validator {
+trait Validator
+{
   private function validate(
     array $input,
     array $validParameters,
@@ -22,4 +23,3 @@ trait Validator {
     AppException::badShapeParameterKey(implode(',', $inputKeys));
   }
 }
-

@@ -4,73 +4,33 @@ declare(strict_types=1);
 
 namespace App;
 
-use \App\Enums\Pages;
+use \App\Constants;
 
 final readonly class View
 {
-  private function __construct(
-    private array $viewFiles,
-  ) {
+  private function __construct(private array $viewFiles, $data = [])
+  {
     foreach ($viewFiles as $view) {
-      include $view;
-    }
-  }
-
-  public static function fetch(string $URI)
-  {
-    $page = Pages::tryPublic($URI) ?? Pages::NOT_FOUND;
-    $allRequiredPages = Pages::pageDependencies($page);
-    $allFilePaths = [];
-
-    foreach ($allRequiredPages as $requiredPage) {
-      $potentialFilePath = Pages::getFilePath($requiredPage);
-
-      if (file_exists($potentialFilePath)) {
-        $allFilePaths[] = $potentialFilePath;
+      if (str_starts_with($view, Constants::VIEWS_PATH)) {
+        include $view;
       } else {
-        $allFilePaths[] = Pages::getFilePath(Pages::NOT_SET);
+        $possibleFile = Constants::VIEWS_PATH . $view;
+
+        if (file_exists($possibleFile)) {
+          include $possibleFile;
+        } else {
+          print 'File doesn\'t exist';
+        }
       }
     }
-
-    new self($allFilePaths);
   }
 
-  public static function generateNavigationLinks()
+  public static function render(string|array $path, array $data = []): void
   {
-    $generateLink = fn(string $link, string $linkName): string => "<a href='$link'>$linkName</a>";
-
-    $URI = explode('?', $_SERVER['REQUEST_URI'])[0];
-
-    $currentPage = Pages::tryPublic($URI) ?? Pages::NOT_FOUND;
-
-    $generatedCurrentPageLink = $generateLink('#', $currentPage->name);
-
-    $pages = Pages::cases();
-
-    $getValidRandomPage = function (array $allPages, object $currentPage) {
-      do {
-        $randomPage = $allPages[array_rand($allPages)];
-      } while ($randomPage === $currentPage || !Pages::isPublic($randomPage));
-
-      return $randomPage;
-    };
-
-    $randomPages = [];
-
-    while (count($randomPages) < 2) {
-      $randomPage = $getValidRandomPage($pages, $currentPage);
-
-      if (!in_array($randomPage, $randomPages)) {
-        $randomPages[] = $randomPage;
-      }
+    if (is_string($path)) {
+      $path = [$path];
     }
 
-    $generatedRandomPageLinks = '';
-
-    foreach ($randomPages as $randomPage) {
-      $generatedRandomPageLinks .= $generateLink($randomPage->value, $randomPage->name);
-    }
-
-    return $generatedCurrentPageLink . $generatedRandomPageLinks;
+    new self($path, $data);
   }
 }
