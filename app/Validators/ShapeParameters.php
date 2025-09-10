@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Geometry;
+namespace App\Validators;
 
 use \App\Exceptions\AppException;
 
-trait Validator
+final class ShapeParameters
 {
-  private function validate(
+  public static function validate(
     array $input,
     array $validParameters,
   ): void {

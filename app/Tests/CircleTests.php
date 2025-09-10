@@ -8,7 +8,7 @@ use \App\View;
 use \App\Enums\Shapes;
 use \App\Geometry\ShapeCreator;
 
-readonly class CircleTests extends TestConstructor
+final class CircleTests extends TestConstructor
 {
   public static function runTests(): void
   {

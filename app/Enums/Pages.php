@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-use \App\Constants;
+use \App\Constants\Paths;
 use App\Enums\HiddenPages;
 
 enum Pages: string
@@ -19,7 +19,7 @@ enum Pages: string
 
   public static function getFilePath(Pages $page): string
   {
-    return Constants::VIEWS_PATH . strtolower($page->name) . '.php';
+    return Paths::VIEWS_PATH . strtolower($page->name) . '.php';
   }
 
   public static function pageDependencies(Pages $page): array

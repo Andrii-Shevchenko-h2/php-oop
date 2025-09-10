@@ -6,6 +6,57 @@ namespace App\Exceptions;
 
 class AppException
 {
+  public static function typeNotString(): void
+  {
+    $info = <<< invalidParameterURI
+    Excusest me sire, thou hast entered something.
+    Something, that should have been a string!
+    invalidParameterURI;
+
+    self::generateException($info);
+    exit(214);
+  }
+
+  public static function badTimeZone(?string $timeZone = null): void
+  {
+    $info = <<< invalidParameterURI
+    Excusest me sire, thou hast entered an invalid timeZone $timeZone
+    invalidParameterURI;
+
+    self::generateException($info);
+    exit(214);
+  }
+
+  public static function badJoinDate(?string $joinDate = null): void
+  {
+    $info = <<< invalidParameterURI
+    Excusest me sire, thou hast entered an invalid joinDate $joinDate
+    invalidParameterURI;
+
+    self::generateException($info);
+    exit(214);
+  }
+
+  public static function badBirthDate(?string $birthDate = null): void
+  {
+    $info = <<< invalidParameterURI
+    Excusest me sire, thou hast entered an invalid birthDate $birthDate
+    invalidParameterURI;
+
+    self::generateException($info);
+    exit(208);
+  }
+
+  public static function badUserName(?string $name = null): void
+  {
+    $info = <<< invalidParameterURI
+    Excusest me sire, thou hast entered an invalid name $name
+    invalidParameterURI;
+
+    self::generateException($info);
+    exit(215);
+  }
+
   public static function unvalidTest(?string $test = null): void
   {
     $info = <<< invalidParameterURI
@@ -13,7 +64,7 @@ class AppException
     invalidParameterURI;
 
     self::generateException($info);
-    exit(214);
+    exit(216);
   }
 
   public static function viewUnsupportedInclude(?string $view = null): void
@@ -135,7 +186,7 @@ class AppException
     goodBadInstance;
 
     self::generateException($info);
-    exit(200);
+    exit(100);
   }
 
   private static function generateException(?string $info = null): void

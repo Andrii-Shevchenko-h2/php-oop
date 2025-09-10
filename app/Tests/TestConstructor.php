@@ -9,11 +9,11 @@ use \App\Enums\Tests;
 use \App\Enums\Shapes;
 use \App\Geometry\ShapeModel;
 
-readonly abstract class TestConstructor
+abstract class TestConstructor
 {
   public abstract static function runTests();
 
-  public static function getDocumentForm(): void
+  public static function createForm(): void
   {
     session_start();
 

@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests;
 
-final readonly class AllTests extends TestConstructor
+abstract class AllTests extends TestConstructor
 {
-  public static function runTests(): string
+  public static function runTests(): void
   {
-    return (
-      CircleTests::runTests() .
-      SquareTests::runTests() .
-      UserTests::runTests()
-    );
+    CircleTests::runTests();
+    SquareTests::runTests();
+    UserTests::runTests();
   }
 }

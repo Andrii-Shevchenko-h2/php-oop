@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Models;
 
 use \BcMath\Number;
-use \App\Geometry\BcNumbers;
 use \App\Enums\Shapes;
+use \App\Services\BcNumbers;
 
 final class ShapeModel
 {

@@ -8,11 +8,10 @@ use \BcMath\Number;
 use \App\Enums\Shapes;
 use \App\Models\ShapeModel;
 use \App\Exceptions\AppException;
+use \App\Validators\ShapeParameters;
 
 readonly class ShapeCreator
 {
-  use \App\Geometry\Validator;
-
   public array $data;
 
   final public function __construct(
@@ -21,7 +20,7 @@ readonly class ShapeCreator
   ) {
     $newShape = new ShapeModel($shape);
 
-    $this->validate($parameters, $newShape->parameters);
+    ShapeParameters::validate($parameters, $newShape->parameters);
 
     /* in future with more complex shapes, need here separate class */
     /* alternatively handle this better and not just grab first key */

@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace App;
 
-use \App\Constants;
+use \App\Constants\Paths;
 
 final readonly class View
 {
   private function __construct(private array $viewFiles, $data = [])
   {
     foreach ($viewFiles as $view) {
-      if (str_starts_with($view, Constants::VIEWS_PATH)) {
+      if (str_starts_with($view, Paths::VIEWS_PATH)) {
         include $view;
       } else {
-        $possibleFile = Constants::VIEWS_PATH . $view;
+        $possibleFile = Paths::VIEWS_PATH . $view;
 
         if (file_exists($possibleFile)) {
           include $possibleFile;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Geometry;
+namespace App\Services;
 
 use \BcMath\Number;
 
