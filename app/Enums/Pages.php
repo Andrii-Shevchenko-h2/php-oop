@@ -16,9 +16,12 @@ enum Pages: string
   case DEBUG = '/debug';
   case HEADER = '/header';
   case FOOTER = '/footer';
+  case UPLOAD = '/upload';
+  case SUCCESS = '/success';
 
   public static function getFilePath(Pages $page): string
   {
+    // HERE is the root of all evil. This should link to controller!
     return Paths::VIEWS_PATH . strtolower($page->name) . '.php';
   }
 
@@ -36,7 +39,7 @@ enum Pages: string
   {
     $pageObject = self::tryFrom($page);
 
-    if (HiddenPages::tryFrom($pageObject->value) !== null) {
+    if ($pageObject->value === null || HiddenPages::tryFrom($pageObject->value) !== null) {
       return null;
     }
 

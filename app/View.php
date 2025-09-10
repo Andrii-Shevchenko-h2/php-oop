@@ -1,36 +1,85 @@
 <?php
 
+/**
+ * Dear future me
+ *
+ * I sincerely apologize for the logic contained within this file.
+ *
+ * I am fully aware that this view has taken on far too many responsibilities -
+ * duties that rightfully belong to a router or a controller. This is an
+ * egregious violation of the principle of separation of concerns, and for that,
+ * I am truly sorry.
+ *
+ * It is a temporary solution, and I promise to refactor this into a proper
+ * routing structure at the earliest possible opportunity.
+ *
+ * Sincerely,
+ * Andrii
+ */
+
 declare(strict_types=1);
 
 namespace App;
 
+use \App\Enums\Pages;
 use \App\Constants\Paths;
 
-final readonly class View
+final class View
 {
-  private function __construct(private array $viewFiles, $data = [])
+  private function __construct(private array $viewFiles, $data = [], $redirect)
   {
+    // $data will get passed
+
     foreach ($viewFiles as $view) {
-      if (str_starts_with($view, Paths::VIEWS_PATH)) {
-        include $view;
+      self::loadFile($view, $redirect);
+    }
+  }
+
+  private static function redirect($file)
+  {
+    if (str_starts_with($file, Paths::VIEWS_PATH)) {
+      if (file_exists($file) || file_exists($file . '.php')) {
+        $location = substr($file, strlen(Paths::VIEWS_PATH));
       } else {
-        $possibleFile = Paths::VIEWS_PATH . $view;
+        $location = Pages::NOT_FOUND;
+      }
+    } else {
+      if (file_exists(Paths::VIEWS_PATH . $file) || file_exists(Paths::VIEWS_PATH . $file . '.php')) {
+        $location = $file;
+      } else {
+        $location = Pages::NOT_FOUND;
+      }
+    }
+
+    header("Location: $location");
+    exit;
+  }
+
+  private static function loadFile(string $file, bool $redirect)
+  {
+    if ($redirect) {
+      self::redirect($file);
+    } else {
+      if (str_starts_with($file, Paths::VIEWS_PATH)) {
+        include $file;
+      } else {
+        $possibleFile = Paths::VIEWS_PATH . $file;
 
         if (file_exists($possibleFile)) {
           include $possibleFile;
         } else {
-          print 'File doesn\'t exist';
+          print '<br><span style="color: red">File not found</span><br>';
         }
       }
     }
   }
 
-  public static function render(string|array $path, array $data = []): void
+  public static function render(string|array $path, array $data = [], bool $redirect = false): void
   {
     if (is_string($path)) {
       $path = [$path];
     }
 
-    new self($path, $data);
+    new self($path, $data, $redirect);
   }
 }

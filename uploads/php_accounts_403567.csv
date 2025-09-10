@@ -1,0 +1,60 @@
+﻿;;;;;;;;;
+;;;;;;;;;
+Account;Beschreibung;Installierte Software;PHP-Version;Preis pro Monat in €;Reseller;Tarif;Domain Anzahl;Postfach Anzahl;Anmerkung
+p259772;Raab Vitalfood GmbH - 45616;;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;30;67;Kostenpflichtig ab 1. Januar 2028.
+p521000;Andrea Niendorf-Fachgroßhandel e.K. - 45678 Website;TYPO3 CMS 11.5.45;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;1;0;Kostenpflichtig ab 1. Januar 2028.
+p540868;h2-Systems GmbH Shops;;PHP 8.2.29+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;0;0;Kostenpflichtig ab 1. Januar 2027.
+p543704;Japan Koi Wild GmbH - 42154;;PHP 7.0.99+8-fpm;15;r29226;SHOP Grow (Agentur-Server) 15.000;2;1;Verfügbar bis mindestens 31. August 2026.
+p543710;FÜSTA Kaminbau GmbH - 30866;;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;2;23;Kostenpflichtig ab 1. Januar 2028.
+p543711;Logopädie Andrea Lang - 44144;WordPress 6.8.2;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;1;1;Kostenpflichtig ab 1. Januar 2028.
+p543712;Hoppala Babyausstattung e.K. - 44078;Shopware 5.7.19;PHP 8.2.29+1-fpm;0;r29226;CMS Grow (Agentur-Server) 5.000;1;6;Kostenpflichtig ab 1. Januar 2027.
+p544725;TSV Langenau Jugendfußball;WordPress 5.4.2;PHP 8.3.23+1-fpm;0;r29226;CMS Grow (Agentur-Server) 3.000;1;12;Kostenpflichtig ab 1. Januar 2028.
+p544727;Casa Dei Fiori - 42275;;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;1;2;Kostenpflichtig ab 1. Januar 2028.
+p546206;Klaiber Solarstrom GmbH - 41590;;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;1;0;Kostenpflichtig ab 1. Januar 2028.
+p548012;ARTUS internactive GmbH 44659;;PHP 7.3.99+8-fpm;15;r29226;CMS Grow (Agentur-Server) 3.000;3;2;Verfügbar bis mindestens 31. August 2026.
+p548013;Geisenhainer Dr. Ammann;;PHP 8.3.23+1-fpm;0;r29226;CMS Grow (Agentur-Server) 3.000;6;0;Kostenpflichtig ab 1. Januar 2028.
+p548014;Best Sound Productions - 44668;;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;1;0;Kostenpflichtig ab 1. Januar 2028.
+p548015;ALB.DE.SIGN - 41887;;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;6;4;Kostenpflichtig ab 1. Januar 2028.
+p548016;Riedel KG - 41870;;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;1;12;Kostenpflichtig ab 1. Januar 2028.
+p549187;Marion Ramm - Shop DEV;;PHP 8.2.29+1-fpm;0;r29226;SHOP Starter (Agentur-Server) 5.000;1;0;Kostenpflichtig ab 1. Januar 2027.
+p549920;Kulisse Bowling Center - 45352;;PHP 7.4.99+8-fpm;15;r29226;CMS Grow (Agentur-Server) 3.000;2;1;Verfügbar bis mindestens 31. Januar 2027.
+p549922;Kratschmayer GmbH - 41725;;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;1;0;Kostenpflichtig ab 1. Januar 2028.
+p555032;CRIO ice GmbH & Co. KG - 44645;;PHP 7.4.99+8-fpm;15;r29226;CMS Grow (Agentur-Server) 8.000;24;73;Verfügbar bis mindestens 31. Januar 2027.
+p555050;Oberföll GmbH - 44724;;PHP 5.6.99+8-fpm;15;r29226;CMS Starter (Agentur-Server) 1.000;1;5;Verfügbar bis mindestens 31. August 2026.
+p555858;motoactive GmbH - 44811;;PHP 5.6.99+8-fpm;15;r29226;SHOP Grow (Agentur-Server) 15.000;7;0;Verfügbar bis mindestens 31. August 2026.
+p557255;Brutmaschinen-Janeschitz GmbH -45227;;PHP 8.2.29+1-fpm;0;r29226;SHOP Grow (Agentur-Server) 22.000;1;13;Kostenpflichtig ab 1. Januar 2027.
+p557279;Häußler Consulting GmbH - 43114;Shopware 6.6.10.3;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;4;15;Kostenpflichtig ab 1. Januar 2028.
+p557555;VESER Vertrieb & Service - 41799;;PHP 8.1.33+1-fpm;0;r29226;CMS Grow (Agentur-Server) 3.000;4;15;Kostenpflichtig ab 1. Januar 2026.
+p557866;Kinderkleiderbasar Langenau;WordPress 6.4.3;PHP 8.3.23+1-fpm;0;r29226;CMS Grow (Agentur-Server) 3.000;1;1;Kostenpflichtig ab 1. Januar 2028.
+p557867;Jugendfussball Langenau;Nextcloud 25.0.3,Nextcloud 28.0.1,Shopware 5.7.19,WordPress 6.1.1,WordPress 6.3.2;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;3;13;Kostenpflichtig ab 1. Januar 2028.
+p559156;ROBI AG - 44745;;PHP 7.2.99+8-fpm;15;r29226;SHOP Starter (Agentur-Server) 5.000;2;0;Verfügbar bis mindestens 31. August 2026.
+p561631;Wego GmbH - 45550;;PHP 7.2.99+8-fpm;15;r29226;SHOP Starter (Agentur-Server) 10.000;2;12;Verfügbar bis mindestens 31. August 2026.
+p562612;Datasensor GmbH - 42022;;PHP 7.4.99+8-fpm;15;r29226;SHOP Starter (Agentur-Server) 5.000;2;7;Verfügbar bis mindestens 31. Januar 2027.
+p564154;h2-Systems GmbH;;PHP 8.1.33+1-fpm;0;r29226;CMS Grow (Agentur-Server) 3.000;7;55;Kostenpflichtig ab 1. Januar 2026.
+p564681;ORSO GmbH - 44728;;PHP 8.2.29+1-fpm;0;r29226;CMS Grow (Agentur-Server) 3.000;7;2;Kostenpflichtig ab 1. Januar 2027.
+p564689;Kopfüber GmbH - 41857;;PHP 8.2.29+1-fpm;0;r29226;CMS Grow (Agentur-Server) 3.000;3;12;Kostenpflichtig ab 1. Januar 2027.
+p569648;Ziemann Handelsvertretung - 45674;;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;2;5;Kostenpflichtig ab 1. Januar 2028.
+p578460;Technoplast v.Treskow GmbH - 44785;;PHP 8.1.33+1-fpm;0;r29226;SHOP Starter (Agentur-Server) 10.000;14;19;Kostenpflichtig ab 1. Januar 2026.
+p583173;ViD GmbH - 455690;;PHP 7.4.99+8-fpm;15;r29226;CMS Starter (Agentur-Server) 1.000;1;4;Verfügbar bis mindestens 31. Januar 2027.
+p585137;Kiwi Automation;;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;1;1;Kostenpflichtig ab 1. Januar 2028.
+p591533;Mobilplus;;PHP 8.2.29+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;1;0;Kostenpflichtig ab 1. Januar 2027.
+p594163;Adam Kommunalhandel e. K. - 45662;;PHP 8.2.29+1-fpm;0;r29226;SHOP Starter (Agentur-Server) 5.000;5;4;Kostenpflichtig ab 1. Januar 2027.
+p601543;Viola Direkt GmbH - 45503;;PHP 8.2.29+1-fpm;0;r29226;SHOP Starter (Agentur-Server) 10.000;8;28;Kostenpflichtig ab 1. Januar 2027.
+p604401;Andrea Niendorf-Fachgroßhandel e.K. - 45678 - Shop;;PHP 5.6.99+8-fpm;15;r29226;SHOP Starter (Agentur-Server) 5.000;0;0;Verfügbar bis mindestens 31. August 2026.
+p607985;Pneumax;;PHP 8.1.33+1-fpm;0;r29226;SHOP Starter (Agentur-Server) 5.000;1;0;Kostenpflichtig ab 1. Januar 2026.
+p607986;SSP;;PHP 8.3.23+1-fpm;0;r29226;DEV-Projekt;0;0;Kostenpflichtig ab 1. Januar 2028.
+p609672;SKB Gärtner SyShop 42006;;PHP 8.1.33+1-fpm;0;r29226;SHOP Starter (Agentur-Server) 5.000;5;13;Kostenpflichtig ab 1. Januar 2026.
+p616795;Nick SW6 Spielwiese;;PHP 8.2.29+1-fpm;0;r29226;DEV-Projekt;0;0;Kostenpflichtig ab 1. Januar 2027.
+p620490;Schmid GmbH;;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;1;0;Kostenpflichtig ab 1. Januar 2028.
+p620669;Reichel Engineering - 44750;;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;1;1;Kostenpflichtig ab 1. Januar 2028.
+p622610;Rauch IT GmbH - 44635;;PHP 8.1.33+1-fpm;0;r29226;SHOP Starter (Agentur-Server) 5.000;1;0;Kostenpflichtig ab 1. Januar 2026.
+p622812;Tri AG;;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;5;8;Kostenpflichtig ab 1. Januar 2028.
+p626988;Modellautohandel Funke - 45714;;PHP 8.2.29+1-fpm;0;r29226;SHOP Grow (Agentur-Server) 15.000;1;0;Kostenpflichtig ab 1. Januar 2027.
+p628540;Trendy - Food GmbH - 44766;;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;2;11;Kostenpflichtig ab 1. Januar 2028.
+p628544;OHNE ENDE Fahrradladen - 44725;;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;1;2;Kostenpflichtig ab 1. Januar 2028.
+p637824;h2-Systems GmbH Dev ShopWerk;;PHP 8.1.33+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;0;0;Kostenpflichtig ab 1. Januar 2026.
+p678083;Büchel GmbH - 45539;;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;1;33;Kostenpflichtig ab 1. Januar 2028.
+p684849;Japan Koi Wild Shopware 6;;PHP 8.3.23+1-fpm;0;r29226;DEV-Projekt;1;0;Kostenpflichtig ab 1. Januar 2028.
+p686053;Acris GPSR-Plugin-Check;;PHP 8.2.29+1-fpm;0;r29226;DEV-Projekt;0;0;Kostenpflichtig ab 1. Januar 2027.
+p686237;ET Objektservice;Drupal Core 10.4.2,Neos 8.3.20;PHP 8.3.23+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;1;1;Kostenpflichtig ab 1. Januar 2028.
+p692638;SKB Gärtner Wordpress 42006;WordPress 6.8.2;PHP 8.2.29+1-fpm;0;r29226;CMS Starter (Agentur-Server) 1.000;9;0;Kostenpflichtig ab 1. Januar 2027.
