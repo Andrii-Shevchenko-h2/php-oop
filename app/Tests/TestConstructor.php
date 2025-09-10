@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests;
 
-use \App\View;
+use \App\Core\View;
 use \App\Enums\Tests;
 use \App\Enums\Shapes;
-use \App\Geometry\ShapeModel;
+use \App\Models\ShapeModel;
 
 abstract class TestConstructor
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use \App\View;
+use \App\Core\View;
 
 // sorry, this should have been handled by a service or controller :(
 $parsedData = [];

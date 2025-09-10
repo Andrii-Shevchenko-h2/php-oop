@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\FileManager;
 
-use \App\View;
+use \App\Core\View;
 use \App\Constants\Paths;
 use \App\Validators\FileName;
 

@@ -19,7 +19,7 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace App\Core;
 
 use \App\Enums\Pages;
 use \App\Constants\Paths;
@@ -31,7 +31,7 @@ final class View
     // $data will get passed
 
     foreach ($viewFiles as $view) {
-      self::loadFile($view, $redirect);
+      self::loadFile($view, $data, $redirect);
     }
   }
 
@@ -44,18 +44,14 @@ final class View
         $location = Pages::NOT_FOUND;
       }
     } else {
-      if (file_exists(Paths::VIEWS_PATH . $file) || file_exists(Paths::VIEWS_PATH . $file . '.php')) {
-        $location = $file;
-      } else {
-        $location = Pages::NOT_FOUND;
-      }
+      $location = $file;
     }
 
     header("Location: $location");
     exit;
   }
 
-  private static function loadFile(string $file, bool $redirect)
+  private static function loadFile(string $file, array $data, bool $redirect)
   {
     if ($redirect) {
       self::redirect($file);

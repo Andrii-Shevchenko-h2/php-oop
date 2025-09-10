@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace App\Core;
 
-use \App\View;
+use \App\Constants\Paths;
 use \App\Enums\Pages;
 use \App\Enums\StaticExtensions;
 
@@ -61,7 +61,7 @@ readonly abstract class Router
 
   private static function serveStaticFile(string $uri): void // only public
   {
-    $filePath = APP_ROOT . '/public' . $uri;
+    $filePath = Paths::PUBLIC_PATH . $uri;
 
     if (file_exists($filePath)) {
       // Serve the file with appropriate headers
@@ -71,7 +71,7 @@ readonly abstract class Router
     } else {
       // Return a 404 if the file doesn't exist
       http_response_code(404);
-      echo 'File not found.';
+      print 'File not found.';
     }
   }
 }

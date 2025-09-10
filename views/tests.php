@@ -19,7 +19,7 @@
 
 declare(strict_types=1);
 
-use \App\View;
+use \App\Core\View;
 use \App\Tests;
 use \App\Exceptions\AppException;
 

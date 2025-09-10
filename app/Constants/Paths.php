@@ -7,5 +7,6 @@ namespace App\Constants;
 final class Paths
 {
   public const string VIEWS_PATH = APP_ROOT . '/views/';
+  public const string PUBLIC_PATH = APP_ROOT . '/public'; // no trail /
   public const string UPLOADS_PATH = APP_ROOT . '/uploads/';
 }

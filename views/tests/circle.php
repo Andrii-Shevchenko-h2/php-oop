@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use \BcMath\Number;
-use \App\View;
+use \App\Core\View;
 
 $circleData = $data['circleData'];
 $inputString = $data['inputString'];

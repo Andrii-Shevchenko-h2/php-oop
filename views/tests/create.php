@@ -1,4 +1,7 @@
 <?php
+
+// I'm sorry for this
+
 $testName = $data['testName'] ?? '';
 $submitText = $data['submitText'] ?? 'Try';
 $shapeEnum = $data['shapeEnum'] ?? null;
@@ -37,7 +40,6 @@ if (isset($shapeParameters)) {
 
 if (isset($parameters)) {
   $createdTest = nl2br($testClass::createTest($parameters));
-  print_r($testClass);
 
   $form = <<< DOCUMENT
   <form method="POST" action="">

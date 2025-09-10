@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use \App\View;
+use \App\Core\View;
 
 ?>
 <!DOCTYPE html>
