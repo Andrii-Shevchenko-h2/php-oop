@@ -64,6 +64,7 @@ final class View
         if (file_exists($possibleFile)) {
           include $possibleFile;
         } else {
+          http_response_code(404);
           print '<br><span style="color: red">File not found</span><br>';
         }
       }

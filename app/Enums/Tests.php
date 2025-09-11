@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
+use \App\Constants\Namespaces;
 use \App\Exceptions\AppException;
 
 enum Tests: string
 {
-  private const TESTS_NAMESPACE = '\\App\\Tests';
-
   case CIRCLE = 'Circle';
   case SQUARE = 'Square';
   case USER = 'User';
@@ -17,7 +16,7 @@ enum Tests: string
 
   public static function getTestClass(Tests $test)
   {
-    return self::TESTS_NAMESPACE . '\\' . match ($test) {
+    return Namespaces::TESTS . '\\' . match ($test) {
       self::CIRCLE => 'CircleTests',
       self::SQUARE => 'SquareTests',
       self::USER => 'UserTests',

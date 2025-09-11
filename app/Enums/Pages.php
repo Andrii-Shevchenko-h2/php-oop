@@ -18,6 +18,7 @@ enum Pages: string
   case FOOTER = '/footer';
   case UPLOAD = '/upload';
   case SUCCESS = '/success';
+  case PHP_INFO = '/phpinfo';
 
   public static function getFilePath(Pages $page): string
   {

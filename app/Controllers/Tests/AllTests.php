@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests;
+namespace App\Controllers\Tests;
 
 abstract class AllTests extends TestConstructor
 {

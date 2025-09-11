@@ -34,6 +34,13 @@ readonly abstract class Router
   private static function fetchPage(string $URI)
   {
     $page = Pages::tryPublic($URI) ?? Pages::NOT_FOUND;
+
+    if ($page === Pages::NOT_FOUND) {
+      http_response_code(404);
+    } elseif ($page === Pages::NOT_SET) {
+      http_response_code(503);
+    }
+
     $allRequiredPages = Pages::pageDependencies($page);
     $allFilePaths = [];
 
@@ -43,6 +50,7 @@ readonly abstract class Router
       if (file_exists($potentialFilePath)) {
         $allFilePaths[] = $potentialFilePath;
       } else {
+        http_response_code(503);
         $allFilePaths[] = Pages::getFilePath(Pages::NOT_SET);
       }
     }
