@@ -19,6 +19,7 @@ enum Pages: string
   case UPLOAD = '/upload';
   case SUCCESS = '/success';
   case PHP_INFO = '/phpinfo';
+  case PDO = '/pdo';
 
   public static function getFilePath(Pages $page): string
   {

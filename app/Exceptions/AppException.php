@@ -6,6 +6,26 @@ namespace App\Exceptions;
 
 class AppException
 {
+  public static function unableToOpenConfigDB(): void
+  {
+    $info = <<< invalidParameterURI
+    Excusest me sire, thine DB Config cannot be openeth
+    invalidParameterURI;
+
+    self::generateException($info);
+    exit(198);
+  }
+
+  public static function badCredentialsDB(): void
+  {
+    $info = <<< invalidParameterURI
+    Excusest me sire, thou hast usedeth invalid credentials for db
+    invalidParameterURI;
+
+    self::generateException($info);
+    exit(197);
+  }
+
   public static function typeNotString(): void
   {
     $info = <<< invalidParameterURI
