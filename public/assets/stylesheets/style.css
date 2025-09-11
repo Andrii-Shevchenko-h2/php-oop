@@ -10,9 +10,10 @@ main {
 .trail {
   position: absolute;
   height: 6px;
-  width: 6px;
+  width: 10px;
   border-radius: 3px;
   background: teal;
+  pointer-events: none;
 }
 
 /* General header and navigation container styles */

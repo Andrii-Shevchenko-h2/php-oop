@@ -26,8 +26,8 @@ for (let i = 0; i < 12; i++) {
 }
 
 function draw() {
-  let x = mouse.x;
-  let y = mouse.y;
+  let x = mouse.x - 5;
+  let y = mouse.y - 3;
 
   dots.forEach(function(dot, index, dots) {
     const nextDot = dots[index + 1] || dots[0];
