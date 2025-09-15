@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controllers\Tests;
+namespace App\Controllers;
 
 use \App\Core\View;
 use \App\Enums\Tests;

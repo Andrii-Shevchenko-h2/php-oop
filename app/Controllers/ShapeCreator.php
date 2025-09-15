@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controllers\Geometry;
+namespace App\Controllers;
 
 use \BcMath\Number;
 use \App\Enums\Shapes;

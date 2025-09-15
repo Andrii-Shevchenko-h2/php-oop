@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controllers\User;
+namespace App\Controllers;
 
 use \App\Enums\Names;
 use \App\Models\UserModel;

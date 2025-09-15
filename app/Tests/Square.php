@@ -2,23 +2,24 @@
 
 declare(strict_types=1);
 
-namespace App\Controllers\Tests;
+namespace App\Tests;
 
 use \App\Core\View;
 use \App\Enums\Shapes;
-use \App\Controllers\Geometry\ShapeCreator;
+use \App\Controllers\TestConstructor;
+use \App\Controllers\ShapeCreator;
 
-abstract class SquareTests extends TestConstructor
+abstract class Square extends TestConstructor
 {
   public static function runTests(): void
   {
-    $lengthSquareTest = self::createTest(['length' => '5']);
-    $diagonalSquareTest = self::createTest(['diagonal' => '5']);
-    $perimeterSquareTest = self::createTest(['perimeter' => '5']);
-    $areaSquareTest = self::createTest(['area' => '5']);
+    $lengthSquareTest = self::create(['length' => '5']);
+    $diagonalSquareTest = self::create(['diagonal' => '5']);
+    $perimeterSquareTest = self::create(['perimeter' => '5']);
+    $areaSquareTest = self::create(['area' => '5']);
   }
 
-  public static function createTest(array $input): void
+  public static function create(array $input): void // model
   {
     $squareData = new ShapeCreator(Shapes::SQUARE, $input)->data;
 

@@ -2,23 +2,24 @@
 
 declare(strict_types=1);
 
-namespace App\Controllers\Tests;
+namespace App\Tests;
 
 use \App\Core\View;
 use \App\Enums\Shapes;
-use \App\Controllers\Geometry\ShapeCreator;
+use \App\Controllers\ShapeCreator;
+use \App\Controllers\TestConstructor;
 
-final class CircleTests extends TestConstructor
+final class Circle extends TestConstructor
 {
   public static function runTests(): void
   {
-    $radiusCircleTest = self::createTest(['radius' => '5']);
-    $diameterCircleTest = self::createTest(['diameter' => '5']);
-    $circumferenceCircleTest = self::createTest(['circumference' => '5']);
-    $areaCircleTest = self::createTest(['area' => '5']);
+    $radiusCircleTest = self::create(['radius' => '5']);
+    $diameterCircleTest = self::create(['diameter' => '5']);
+    $circumferenceCircleTest = self::create(['circumference' => '5']);
+    $areaCircleTest = self::create(['area' => '5']);
   }
 
-  public static function createTest(array $input)
+  public static function create(array $input) // model
   {
     $circleData = new ShapeCreator(Shapes::CIRCLE, $input)->data;
 

@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Controllers\Tests;
+namespace App\Controllers;
 
+use \App\Tests;
 use \App\Core\View;
 use \App\Exceptions\AppException;
+use \App\Controllers\TestConstructor;
 
 final class TestController
 {
@@ -13,10 +15,10 @@ final class TestController
   {
     if (isset($_GET['unit'])) {
       match ($_GET['unit']) {
-        'all' => AllTests::runTests(),
-        'circle' => CircleTests::runTests(),
-        'square' => SquareTests::runTests(),
-        'user' => UserTests::runTests(),
+        'all' => Tests\All::runTests(),
+        'circle' => Tests\Circle::runTests(),
+        'square' => Tests\Square::runTests(),
+        'user' => Tests\User::runTests(),
         '' => '',
         default => AppException::invalidTestParameterURI($_GET['unit']),
       };
@@ -25,8 +27,8 @@ final class TestController
       unset($parameters['create']);
 
       match ($_GET['create']) {
-        'circle' => CircleTests::createTest($parameters),
-        'square' => SquareTests::createTest($parameters),
+        'circle' => Tests\Circle::create($parameters),
+        'square' => Tests\Square::create($parameters),
         '', 'new' => TestConstructor::createForm(),
         default => AppException::invalidTestParameterURI($_GET['create']),
       };

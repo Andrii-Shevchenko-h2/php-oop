@@ -45,4 +45,10 @@ final class Database
   {
     return $this->pdo;
   }
+
+  // Prevent cloning the instance
+  public function __clone() {}
+
+  // Prevent unserializing the instance
+  public function __wakeup() {}
 }
