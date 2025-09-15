@@ -6,5 +6,5 @@ namespace App\Constants;
 
 final class Namespaces
 {
-  public const TESTS = '\\App\\Controllers\\Tests';
+  public const TESTS = '\\App\\Tests';
 }

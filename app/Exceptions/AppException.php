@@ -6,6 +6,16 @@ namespace App\Exceptions;
 
 class AppException
 {
+  public static function badQueryDB(): void
+  {
+    $info = <<< invalidParameterURI
+    Excusest me sire, thou hast tried to useth a horrendous query that we shall not accept!
+    invalidParameterURI;
+
+    self::generateException($info);
+    exit(195);
+  }
+
   public static function unableToOpenConfigDB(): void
   {
     $info = <<< invalidParameterURI

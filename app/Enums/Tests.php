@@ -17,10 +17,10 @@ enum Tests: string
   public static function getTestClass(Tests $test)
   {
     return Namespaces::TESTS . '\\' . match ($test) {
-      self::CIRCLE => 'CircleTests',
-      self::SQUARE => 'SquareTests',
-      self::USER => 'UserTests',
-      self::SHAPES_COLLECTION => 'ShapesCollectionTests',
+      self::CIRCLE => 'Circle',
+      self::SQUARE => 'Square',
+      self::USER => 'User',
+      self::SHAPES_COLLECTION => 'ShapesCollection',
       default => AppException::unvalidTest($test->value),
     };
   }

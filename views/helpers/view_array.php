@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use \App\Validators\UnitTest;
+use \App\Validators\ViewArray;
 
-UnitTest::validate($data);
+ViewArray::validate($data);
 
 ?>
 
@@ -13,3 +13,5 @@ UnitTest::validate($data);
     <dt><?= $dataKey ?></dt>
     <dd><?= $dataValue ?></dd>
   <?php endforeach ?>
+</dl>
+<hr>

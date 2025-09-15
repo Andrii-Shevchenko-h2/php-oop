@@ -24,4 +24,4 @@ foreach ($squareData as $dataKey => $dataValue) {
 ?>
 
 <h1>Square</h1>
-<?php View::render('helpers/unit_test.php', $parsedData) ?>
+<?php View::render('helpers/view_array.php', $parsedData) ?>

@@ -39,7 +39,7 @@ if (isset($shapeParameters)) {
 }
 
 if (isset($parameters)) {
-  $createdTest = nl2br($testClass::createTest($parameters));
+  $createdTest = $testClass::create($parameters);
 
   $form = <<< DOCUMENT
   <form method="POST" action="">

@@ -15,4 +15,4 @@ $parsedData['joinDate'] = isset($data['joinDate']) ? $data['joinDate']->format('
 ?>
 
 <h1>User</h1>
-<?php View::render('helpers/unit_test.php', $parsedData) ?>
+<?php View::render('helpers/view_array.php', $parsedData) ?>
